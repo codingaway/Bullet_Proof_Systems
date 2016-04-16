@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="../templates/common.xhtml">
+        <ui:define name="title">
+            Page Navigation
+        </ui:define>
+        <ui:define name="sidebar">
+            <ui:include src="../templates/sidenav.xhtml" />
+        </ui:define>
+        <ui:define name="main_content">
+            <p>
+                Navigation is important feature of any web application. A visitor may need to navigate to 
+                other resources using simple HTML link or submit form data that need to be processed by clicking a button.
+                Internally JSF framework needs to work out which JSF page to be rendered based on an action. 
+                In JSF there are three different options to define page navigation.
+            </p>
+            <h3>Implicit Navigation</h3>
+            <p>
+                JSF allows implicit navigation which means that only the view name
+                needs to be put in action attribute of a command button or link. In this case
+                JSF will search and correct view name my appending .xhtml extension to it.
+            </p>
+            <h3>Auto Navigation</h3>
+            <p>
+                A method from a managed bean can be used that returns a view name as
+                string. This method can be used to do conditional navigation.
+            </p>
+            <h3>Explicit Navigation</h3>
+            <p>
+                In explicit navigation, navigation rules are defined in faces-config.xml file. 
+                Using explicit navigation same outcome from different source can be mapped to different views.
+            </p>
+        </ui:define>
+    </ui:composition>
+</html>

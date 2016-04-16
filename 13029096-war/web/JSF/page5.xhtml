@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="../templates/common.xhtml">
+        <ui:define name="title">
+            Data Tables
+        </ui:define>
+        <ui:define name="sidebar">
+            <ui:include src="../templates/sidenav.xhtml" />
+        </ui:define>
+        <ui:define name="main_content">
+            <p>Very often we need to display data in a tabular form from a data source collection. JSF provides Data table tag
+            <code>&lt;h:dataTable &gt;</code> to facilitate displaying tabular data in a convenient way.
+            </p>
+            <p>
+                We can easily add display other JSF component in the table cells, 
+                add headers and footers to the table and change the look and feel with CSS style.
+            </p>
+            <h4>Binding data source</h4>
+            <p>
+                To bind a data source we simply need to set the "value" attribute to Java collection from a managed bean.
+                h:dataTable assign each element of the collection to a variable which is declared using "var" attribute.
+                We can then refer to other values/properties inside each data item using this variable and display them in separate column. DataTable
+                iterate through the collection and generate a row for each item found. 
+            </p>
+            <p>
+                The following code fragment is an example of a simple use of <code>&lt;h:dataTable&gt;</code>
+            </p>
+            <pre>
+&lt;h:dataTable value=\#{myBean.collection} var=aDataRow&gt; 
+    &lt;h:column&gt;\#{aDataRow.value1}&lt;/h:column&gt; 
+    &lt;h:column&gt;\#{aDataRow.value2}&lt;/h:column&gt;
+&lt;/h:dataTable&gt;
+            </pre>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3 col-md-3">
+                        <ui:insert name="sidebar">                            
+                        </ui:insert>
+                    </div>
+                    <div class="col-sm-9 col-md-9">
+                        <ui:insert name="main_content">
+                        </ui:insert>
+                    </div>
+                </div>
+            </div>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:composition template="../templates/common.xhtml">
+        <ui:define name="title">
+            Scopes of Managed Beans
+        </ui:define>
+        <ui:define name="sidebar">
+            <ui:include src="../templates/sidenav.xhtml" />
+        </ui:define>
+        <ui:define name="main_content">
+            <h3>Java Bean</h3>
+            <p>
+                A Java bean is a reusable software component that follows some general specification. 
+                A bean is nothing else but POJO(Plain Old Java Object) that defines a public constructor with no parameters and getters and setters method for it's properties.
+                Beans are fundamental to JSF programming.
+            </p>
+            <h3>Managed Beans </h3>
+            <p>
+                Managed beans are regular Java beans that are registered and managed by JSF framework. They work as a model for JSF UI components. 
+                Managed bean are directly accessible from a JSF page. In the context of JSF, beans store the state of web pages.
+            </p>
+
+            <p>For the convenience of programmers, a JSF container provides different kind of scopes. These scopes typically  hold
+                beans and other objects that needs to be available in different components of a web application. In JSF2.2 these scopes can be declared using Annotation as well as using faces-config.xml file.</p>
+            <h4>Application Scoped</h4>
+            <p>
+                A Bean with Application Scoped persists for the entire duration of web application and is shared by all request and sessions.
+            </p>
+            <h4>Session Scoped</h4>
+            <p>
+                A Bean with Session Scoped persists for the time a session is established and until the end the session. A new instance of the bean is created for each session created.
+            </p>
+            <h4>Request Scoped</h4>
+            <p>
+                A Request Scoped bean persists from the start of a request until server sends out a response. 
+                A new instances of the bean is created with each request received by the server.
+            </p>
+            <h4>View Scoped</h4>
+            <p>
+                A View Scoped persists as long as user is interacting with the same view(JSF page).
+            </p>
+            <h4>None Scoped</h4>
+            <p>
+                A None Scoped bean persists for a Single EL(Expression Language) evaluation. 
+                Bean is destroyed as soon as the EL evaluation is complete.
+            </p>
+            <h4>Custom Scoped</h4>
+            <p>
+               A Managed bean's life time can be defined using Custom Scope. Programmer is responsible for removing Custom Scoped beans from the application.
+            </p>
+        </ui:define>
+    </ui:composition>
+</html>

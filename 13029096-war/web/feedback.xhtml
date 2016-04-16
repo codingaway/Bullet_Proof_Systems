@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="templates/common.xhtml">
+        <ui:define name="title">
+            Your Feedback
+        </ui:define>
+        <ui:define name="sidebar">
+        </ui:define>
+        <ui:define name="main_content">
+            <h5>Please use the form below for your valuable feedback</h5>
+
+            <div class="form-group feedback">
+                <h:outputLabel styleClass="sr-only" for="firstname" value="First Name" />
+                <h:inputText styleClass="form-control" 
+                             id="firstname"
+                             required="true"
+                             value="#{feedbackForm.firstName}"
+                             label="First name" 
+                             p:placeholder="First name"
+                             requiredMessage="First name is required"
+                             validatorMessage="Name can be only alphabetic characters and (' )">
+                    <f:validateRegex pattern="[a-zA-Z0-9.']+" />
+                </h:inputText>
+                <h:outputLabel styleClass="sr-only" for="surname" value="Surname" />
+                <h:inputText styleClass="form-control" 
+                             id="surname"
+                             required="true"
+                             value="#{feedbackForm.surname}"
+                             label="Surname"
+                             p:placeholder="Surname"
+                             requiredMessage="Surname is required"
+                             validatorMessage="Name can be only alphabetic characters and (' )">
+                    <f:validateRegex pattern="[a-zA-Z0-9.']+" />
+                </h:inputText>
+                <h:outputLabel styleClass="sr-only" for="email" value="Email" />
+                <h:inputText styleClass="form-control" 
+                             id="email"
+                             required="true"
+                             value="#{feedbackForm.email}"
+                             label="Email"
+                             p:placeholder="Email e.g name@domain.com"
+                             requiredMessage="Email address is required"
+                             validatorMessage="Email must be a valid email address.">
+                    <f:validateRegex pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" />
+                </h:inputText>
+                <h:outputLabel styleClass="sr-only" for="message" value="Message" />
+                <h:inputTextarea  p:placeholder="Your message here"
+                                  p:rows="10"
+                                  id="message"
+                                  required="true"
+                                  styleClass="form-control"
+                                  label="Message"
+                                  value="#{feedbackForm.message}"
+                                  requiredMessage="Message cannot be empty">
+                </h:inputTextarea>
+                <h:messages styleClass="text-warning" />
+            </div>
+
+            <h:commandButton styleClass="btn btn-primary" value="Submit" action="#{feedbackForm.proccesPage()}" /> &nbsp; &nbsp;
+            <h:commandButton styleClass="btn btn-default" value="Cancel" action="feedback" immediate="true" />
+        </ui:define>
+    </ui:composition>
+</html>

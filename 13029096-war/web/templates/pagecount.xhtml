@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <div class="placeholder text-center">
+                
+                <div class="rounded_box">
+                    <div class="text">    
+                        Overall : <strong><span class="text-warning"> <h:outputText value="#{appCounter.showCount(view.viewId)}" /> </span></strong> <br />
+                    This session :<strong><span class="text-danger"> <h:outputText value="#{sessionCounter.showCount(view.viewId)}" /> </span></strong>
+                    </div>
+                </div>
+              <h5>Visit count</h5>
+            </div>
+            <div class="clearfix" ></div>
+        </ui:composition>
+    </h:body>
+</html>
+
