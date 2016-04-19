@@ -4,6 +4,14 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    <filter>
+        <filter-name>NoCacheFilter</filter-name>
+        <filter-class>filter.NoCacheFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>NoCacheFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -19,6 +27,50 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>faces/shop/catalog.xhtml</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <display-name>AuthorizedAccess</display-name>
+        <web-resource-collection>
+            <web-resource-name>shopping_catalog</web-resource-name>
+            <description/>
+            <url-pattern>/faces/shop/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>customer</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>AdminAccess</display-name>
+        <web-resource-collection>
+            <web-resource-name>AllAdminOperations</web-resource-name>
+            <description/>
+            <url-pattern>/faces/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>Admin Only Access</description>
+            <role-name>administrator</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description>Secured Login</description>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Stati resources</web-resource-name>
+            <description>CSS javascript etc.</description>
+            <url-pattern>/resources/*</url-pattern>
+        </web-resource-collection>
+        <!-- No auth-constraint static resources! -->
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>file</realm-name>
+        <form-login-config>
+            <form-login-page>/login.xhtml</form-login-page>
+            <form-error-page>/error.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
 </web-app>
