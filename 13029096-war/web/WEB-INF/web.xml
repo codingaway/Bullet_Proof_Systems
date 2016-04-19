@@ -8,8 +8,16 @@
         <filter-name>NoCacheFilter</filter-name>
         <filter-class>filter.NoCacheFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>filter.LoginFilter</filter-class>
+    </filter>
     <filter-mapping>
         <filter-name>NoCacheFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <servlet>
@@ -38,7 +46,7 @@
         </web-resource-collection>
         <auth-constraint>
             <description/>
-            <role-name>customer</role-name>
+            <role-name>user</role-name>
         </auth-constraint>
     </security-constraint>
     <security-constraint>
@@ -50,7 +58,7 @@
         </web-resource-collection>
         <auth-constraint>
             <description>Admin Only Access</description>
-            <role-name>administrator</role-name>
+            <role-name>admin</role-name>
         </auth-constraint>
         <user-data-constraint>
             <description>Secured Login</description>
@@ -59,7 +67,7 @@
     </security-constraint>
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>Stati resources</web-resource-name>
+            <web-resource-name>Static resources</web-resource-name>
             <description>CSS javascript etc.</description>
             <url-pattern>/resources/*</url-pattern>
         </web-resource-collection>
