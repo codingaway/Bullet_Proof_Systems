@@ -10,7 +10,7 @@ A B2B shopping cart systems based on Netbeans sample database. Being developed u
 University of Limerick Students: Abdul Halim, Enda O'Shea, Benjamin Kiel and Xiaolong Liang
 
 ##Requirements
-~~The following are general requirements for this project to be implemented~~
+The following are general requirements for this project to be implemented
 
 1. User Login
 2. Customers can perform the following:
@@ -60,7 +60,6 @@ From command line:
     git remote add upstream https://github.com/codingaway/Bullet_Proof_Systems.git
   ```  
 
-
 4. Create new branch
 Always ALWAYS base your work with most upto date upstream master branch. This will help merging your work to the main repo at ease.
 
@@ -72,8 +71,10 @@ So before you start working on a new feature, follow this
 * Hack away -  commit - repeat
 * Push your new changes(i.e new branch ) to your github repo (Do rebase again before push incase some else's changes your branch is missing)
 
+```
     git rebase upstream/master 
     git push origin --all
+```
 
 * Login to your Github
 * Open your repository - select Head to your awesome_feature branch
