@@ -86,6 +86,10 @@ hs_err_pid*
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 
+<<<<<<< HEAD
 
 /13029096-ejb/nbproject/private/
 /13029096-war/nbproject/private/
+=======
+*.properties
+>>>>>>> bd5bfbc7af192961c727a9e90f8f7d409b65a2d3
