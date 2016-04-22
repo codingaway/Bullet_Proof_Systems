@@ -39,8 +39,7 @@
                                     
                                 </div>
                                 <div class="panel-footer">
-                                    <h:commandButton styleClass="btn btn-default" value="Add to cart" action="cartBackingBean.add">
-                                        <f:param name="productId" value="#{p.productId}" />
+                                    <h:commandButton styleClass="btn btn-default" value="Add to cart" action="#{cardBackingBean.add(p.productId)}">
                                     </h:commandButton>
                                     <span class="pull-right">In stock: #{p.quantityOnHand}</span>
                                 </div>

@@ -1,12 +1,54 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
-</html>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+    <ui:composition template="/templates/common.xhtml">
+        <ui:define name="title">
+            Shopping Cart
+        </ui:define>
+        <ui:define name="sidebar">
+            <p class="lead">Shop Name</p>
+            <h3>Category</h3>
+            <div class="list-group">
+                <h:dataTable value="#{catelog.productCodeList}"
+                             var="p" styleClass="list-group" >
+                    <h:column>
+                        <a href="#" class="list-group-item">#{p.description}</a>           
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </ui:define>
+        <ui:define name="main_content">
+            <div class="row">
+                <div class="jumbotron">
+                    <h4 align="center">Your Current Shopping Cart
+                        <h:commandButton style="margin-left: 60px;" styleClass="btn btn-default" action="checkout.xhtml" value="Checkout"></h:commandButton></h4>
+                        <h5>#{checkoutBean.message}</h5>
+                        <h:dataTable  class="table-bordered " style=" padding: 8px;" value="#{cardBackingBean.returnProducts()}" var="item">
+                            <h:column >
+                                <b>Product Name:&nbsp;</b>#{item.product.description}<br/> 
+                                <div class="divider"></div>
+                                <b>Price:&nbsp;</b>#{item.product.purchaseCost}&nbsp;<b>Qty:</b>#{item.product_quantity}<br/>
+                                <b>Change Quantity:&nbsp;</b><h:inputText  id="movie" style="width: 80px;" value="#{item.product_quantity}"><br/>
+                                <!--- Todo here validate user input  -->
+                                </h:inputText>&nbsp;<br/>
+
+                                <b>Total Cost:&nbsp;</b>#{item.product.purchaseCost * item.product_quantity}<br/>
+                                <h:commandButton style="border-radius:10px; text-align: right" class="btn btn-default" value="Update" action="#{item.setProduct_quantity(item.product_quantity)}">        
+                                </h:commandButton>&nbsp;&nbsp;
+                                <h:commandButton style="border-radius:10px; text-align: right" class="btn btn-default" action="#{cardBackingBean.removeProductFromList(item.product.productId)}" value="Remove">        
+                                </h:commandButton>&nbsp;&nbsp;
+                                <br/>
+                            </h:column>
+
+                        </h:dataTable>
+          
+                    <h7> </h7>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
