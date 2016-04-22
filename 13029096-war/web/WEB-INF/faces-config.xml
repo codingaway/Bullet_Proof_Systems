@@ -33,4 +33,9 @@
         <managed-bean-class>managedBeans.Logout</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>createUsersBean</managed-bean-name>
+        <managed-bean-class>managedBeans.CreateUsersBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>
