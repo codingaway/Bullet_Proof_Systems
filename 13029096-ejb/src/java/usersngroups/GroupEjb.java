@@ -8,8 +8,10 @@ package usersngroups;
 import entity.Gp14group;
 import entity.Gp14groupPK;
 import entity.Gp14user;
+import java.util.*;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -31,6 +33,26 @@ public class GroupEjb {
     {
         Gp14groupPK gpk = new Gp14groupPK(customerId, groupName);
         Gp14group group = new Gp14group(gpk, username);
-        em.persist(group);
+        
+        try{
+            em.persist(group);
+        }
+        catch(Exception ex)
+        {
+            System.err.println("Exception on DUPLICATE Group");
+        }
+        
+    }
+    
+    public boolean isUserInGroup(Integer customerId, String groupname)
+    {
+        List<Gp14group> gList = em.createNamedQuery("Gp14group.findByCustIdAndGroupname")
+                .setParameter("customerId", customerId)
+                .setParameter("groupname", groupname).getResultList();
+        
+        if(gList.size() > 0)
+            return true;
+        else
+            return false;
     }
 }

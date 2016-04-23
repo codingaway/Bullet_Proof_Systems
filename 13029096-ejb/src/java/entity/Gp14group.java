@@ -28,6 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Gp14group.findAll", query = "SELECT g FROM Gp14group g"),
     @NamedQuery(name = "Gp14group.findByCustomerId", query = "SELECT g FROM Gp14group g WHERE g.gp14groupPK.customerId = :customerId"),
     @NamedQuery(name = "Gp14group.findByUsername", query = "SELECT g FROM Gp14group g WHERE g.username = :username"),
+    @NamedQuery(name = "Gp14group.findByCustIdAndGroupname", 
+            query = "SELECT g FROM Gp14group g WHERE g.gp14groupPK.customerId = :customerId AND g.gp14groupPK.groupname = :groupname"),
     @NamedQuery(name = "Gp14group.findByGroupname", query = "SELECT g FROM Gp14group g WHERE g.gp14groupPK.groupname = :groupname")})
 public class Gp14group implements Serializable {
 
