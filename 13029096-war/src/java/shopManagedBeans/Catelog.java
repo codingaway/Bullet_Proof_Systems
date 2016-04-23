@@ -5,20 +5,14 @@
  */
 package shopManagedBeans;
 
-import entity.Customer;
 import entity.Product;
 import entity.ProductCode;
+import java.io.Serializable;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.faces.bean.ManagedProperty;
 import session.ProductCodeFacade;
 import session.ProductFacade;
 
@@ -28,44 +22,46 @@ import session.ProductFacade;
  */
 @Named(value = "catelog")
 @RequestScoped
-public class Catelog {
+public class Catelog implements Serializable{
     
     @EJB
     private ProductFacade pf;
     
     @EJB
     private ProductCodeFacade pcf;
+    
+    @ManagedProperty(value = "#{param.cateId}")
+    private String cateId;
+
+    public String getCateId() {
+        return cateId;
+    }
+
+    public void setCateId(String cateId) {
+        this.cateId = cateId;
+    }
     /*
      * Creates a new instance of Catelog
      */
+    
     public Catelog() {
     }
     
-    public List<Integer> getNumbers(){
-        
-        List<Integer> aList = new ArrayList<>();
-        
-        aList.add(1);
-        aList.add(200);
-        aList.add(400);
-        aList.add(51);
-        
-        return aList;
-    }
-    
-    public String getHello()
+    public List<Product> getProducts()
     {
-        return "Hello there Catelog";
-    }
-    
-    public List<Product> getProductList()
-    {
-        return pf.findAll();
+        if(cateId == null)
+        {
+            return pf.findAll();
+        }
+            
+        else
+        {
+            return pf.getProdByCategory(cateId);
+        }
     }
     
     public List<ProductCode> getProductCodeList()
     {
         return pcf.findAll();
     }
-
 }

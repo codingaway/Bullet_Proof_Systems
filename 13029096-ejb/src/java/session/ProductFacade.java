@@ -6,6 +6,8 @@
 package session;
 
 import entity.Product;
+import entity.ProductCode;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +29,13 @@ public class ProductFacade extends AbstractFacade<Product> {
 
     public ProductFacade() {
         super(Product.class);
+    }
+    
+    public List<Product>getProdByCategory(String pcode)
+    {
+        List<Product> pList = em.createNamedQuery("Product.findByProductCode")
+                .setParameter("productCode", pcode).getResultList();
+        return pList;
     }
     
 }

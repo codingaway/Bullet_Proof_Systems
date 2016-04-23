@@ -5,49 +5,24 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="templates/common.xhtml">
+    <ui:composition template="../templates/common.xhtml">
         <ui:define name="title">
             Admin - Managed Shop
         </ui:define>
         <ui:define name="sidebar">
-            <p class="lead">Shop Name</p>
             <h3>Category</h3>
-            <div class="list-group">
-                <h:dataTable value="#{catelog.productCodeList}"
-                             var="p" styleClass="list-group" >
-                    <h:column>
-                        <a href="#" class="list-group-item">#{p.description}</a>           
-                    </h:column>
-                </h:dataTable>
+             <div class="text-right">
+                <ul class="nav nav-sidebar">
+                    <li><h:commandLink value="Manage produts" action="manage_products" /></li>
+                    <li><h:commandLink value="Process oders" action="processorders" /></li>
+                </ul>
             </div>
         </ui:define>
         <ui:define name="main_content">
 
             <div class="row">
-                <h3>Product List</h3>
-                <h:dataTable value="#{catelog.productList}"
-                             var="p" styleClass="" >
-                    <h:column>
-                        <div class="col-sm-12 col-lg-12 col-md-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title"><a href="#">#{p.description}</a> </h3>
-                                    <h4 class="pull-right">€#{p.purchaseCost}</h4>
-                                </div>
-                                <div class="panel-body">
-                                    #{p.manufacturerId.name}
-                                    
-                                </div>
-                                <div class="panel-footer">
-                                    <h:commandButton styleClass="btn btn-default" value="Add to cart" action="cartBackingBean.add">
-                                        <f:param name="productId" value="#{p.productId}" />
-                                    </h:commandButton>
-                                    <span class="pull-right">In stock: #{p.quantityOnHand}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </h:column>
-                </h:dataTable>
+                <h3>Admin Dashboard</h3>
+                
             </div>
         </ui:define>
     </ui:composition>
