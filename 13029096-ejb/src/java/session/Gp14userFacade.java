@@ -5,7 +5,7 @@
  */
 package session;
 
-import entity.Customer;
+import entity.Gp14user;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  * @author Abdul Halim <13029096@studentmail.ul.ie>
  */
 @Stateless
-public class CustomerFacade extends AbstractFacade<Customer> {
+public class Gp14userFacade extends AbstractFacade<Gp14user> {
 
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
@@ -26,20 +26,20 @@ public class CustomerFacade extends AbstractFacade<Customer> {
         return em;
     }
 
-    public CustomerFacade() {
-        super(Customer.class);
+    public Gp14userFacade() {
+        super(Gp14user.class);
     }
     
-    public Customer getCustomerById(Integer custId)
+    public Integer getCustomerIdByUsername(String userName)
     {
-        List<Customer> cList = em.createNamedQuery("Customer.findByCustomerId")
-                .setParameter("customerId", custId).getResultList();
+        List<Gp14user> userList = em.createNamedQuery("Gp14user.findByUsername")
+                .setParameter("username", userName)
+                .getResultList();
         
-        if(cList.size() > 0){
-            return cList.get(0);
-        }
+        if(userList.size() > 0)
+            return userList.get(0).getCustomerId();
         else
-            return null;     
+            return null;
     }
     
 }
