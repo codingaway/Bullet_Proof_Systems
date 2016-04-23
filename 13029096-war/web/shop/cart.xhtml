@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="jumbotron">
                     <h4 align="center">Your Current Shopping Cart
-                        <h:commandButton style="margin-left: 60px;" styleClass="btn btn-default" action="checkout.xhtml" value="Checkout"></h:commandButton></h4>
+                        <h:commandButton style="margin-left: 60px;" styleClass="btn btn-default" action="checkout.xhtml" value="Checkout"></h:commandButton>&nbsp;&nbsp;<h:commandButton style="margin-left: 60px;" styleClass="btn btn-default" action="#{cardBackingBean.cancelTransaction}" value="Cancel"></h:commandButton></h4>
    
                         <h5>#{checkoutBean.message}</h5>
                         <h:dataTable  class="table-bordered " style=" padding: 8px;" value="#{cardBackingBean.returnProducts()}" var="item">
@@ -44,7 +44,6 @@
                                 </h:commandButton>&nbsp;&nbsp;
                                 <br/>
                             </h:column>
-
                         </h:dataTable>
           
                 </div>
