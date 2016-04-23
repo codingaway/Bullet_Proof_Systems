@@ -15,7 +15,6 @@
         </ui:define>
         <ui:define name="sidebar">
             <h2>Profile summery</h2>
-            <h:outputText value="User_id: #{userProfileBean.custId}"/><br/>
             <h:commandButton styleClass="btn btn-info" value="Edit profile" action="editprofile" rendered="#{userProfileBean.ownProfile}" />
         </ui:define>
         <ui:define name="main_content">
@@ -31,6 +30,12 @@
                 <p>
                     <span class="glyphicon glyphicon-envelope"></span> #{'   '}
                     <a href="mailto:#{userProfileBean.cutomerDetails.email}" >#{userProfileBean.cutomerDetails.email}</a>
+                </p>
+                <p>
+                    Message:
+                </p>
+                <p>
+                    <h:outputText value="#{userProfileBean.cutomerMessage}" /> 
                 </p>
                               
             </div>

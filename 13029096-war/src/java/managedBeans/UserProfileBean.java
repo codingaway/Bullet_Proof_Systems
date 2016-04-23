@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import session.CustomerFacade;
+import session.Gp14messageFacade;
 import session.Gp14userFacade;
 
 /**
@@ -27,6 +28,9 @@ public class UserProfileBean {
     
     @EJB
     private CustomerFacade cf;
+    
+    @EJB
+    private Gp14messageFacade mf;
     
     @ManagedProperty(value = "#{param.custId}")
     private Integer custId;
@@ -59,6 +63,32 @@ public class UserProfileBean {
         {
             Customer customer = cf.getCustomerById(profileId);
             return customer;
+        }
+        else
+            return null;
+    }
+    
+    public String getCutomerMessage()
+    {
+        Integer profileId = null;
+        System.err.println("Customer ID param: " + custId);
+        if(custId == null) // view request without parameters -> Viewing own profile
+        {
+            System.err.println("Customer ID is NULL: ");
+            String userName  = FacesContext.getCurrentInstance()
+                    .getExternalContext().getRemoteUser();
+            if(userName != null)
+            {
+                profileId = uf.getCustomerIdByUsername(userName);
+                System.err.println("Getting logged in users Id ");
+            }
+        }
+        else
+            profileId = custId;
+        
+        if(profileId != null)
+        {
+            return mf.getMessageById(profileId);
         }
         else
             return null;
