@@ -33,6 +33,13 @@
         <navigation-case>
             <from-outcome>admin-dash</from-outcome>
             <to-view-id>/admin/dashboard.xhtml</to-view-id>
+        </navigation-case>     
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/user/profile.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>editprofile</from-outcome>
+            <to-view-id>/user/editprofile.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <managed-bean>
@@ -41,9 +48,4 @@
         <managed-bean-class>managedBeans.Logout</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
-    <managed-bean>
-        <managed-bean-name>userProfileBean</managed-bean-name>
-        <managed-bean-class>managedBeans.UserProfileBean</managed-bean-class>
-    
-        <managed-bean-scope>request</managed-bean-scope></managed-bean>
 </faces-config>

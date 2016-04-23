@@ -4,22 +4,35 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <f:metadata>
+        <f:viewParam name="custId" value="#{userProfileBean.custId}"/>
+    </f:metadata>
 
     <ui:composition template="../templates/common.xhtml">
         <ui:define name="title">
             Profile page
         </ui:define>
         <ui:define name="sidebar">
-            <p class="lead">Shop Name</p>
-            <h3>Category</h3>
-            <div class="list-group">
-            </div>
+            <h2>Profile summery</h2>
+            <h:outputText value="User_id: #{userProfileBean.custId}"/><br/>
+            <h:commandButton styleClass="btn btn-info" value="Edit profile" action="editprofile" rendered="#{userProfileBean.ownProfile}" />
         </ui:define>
         <ui:define name="main_content">
 
             <div class="row">
-                <h3>User profile</h3>
-                <h:outputText value="#{userProfileBean.cutomerDetails.name}" />
+                <h3><h:outputText value="#{userProfileBean.cutomerDetails.name}" /></h3>
+                <p>Customer ID#  <h:outputText value="#{userProfileBean.cutomerDetails.customerId}" /> </p>
+                <h5>Address :</h5>
+                <p><h:outputText value="#{userProfileBean.cutomerDetails.addressline1}" /> </p>
+                <p><h:outputText value="#{userProfileBean.cutomerDetails.addressline2}" /> </p>
+                <p><h:outputText value="#{userProfileBean.cutomerDetails.city}, #{' '} #{userProfileBean.cutomerDetails.state}" /> </p>
+                <p><span class="glyphicon glyphicon-phone"></span>#{'   '}<h:outputText value="#{userProfileBean.cutomerDetails.phone}" /> </p>
+                <p>
+                    <span class="glyphicon glyphicon-envelope"></span> #{'   '}
+                    <a href="mailto:#{userProfileBean.cutomerDetails.email}" >#{userProfileBean.cutomerDetails.email}</a>
+                </p>
+                              
             </div>
         </ui:define>
     </ui:composition>
