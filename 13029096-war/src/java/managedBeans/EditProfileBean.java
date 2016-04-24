@@ -53,7 +53,7 @@ public class EditProfileBean implements Serializable {
      * @return the value of phone
      */
     public String getPhone() {
-        return customer.getPhone();
+        return this.phone;
     }
 
     /**
@@ -71,7 +71,7 @@ public class EditProfileBean implements Serializable {
      * @return the value of email
      */
     public String getEmail() {
-        return customer.getEmail();
+        return this.email;
     }
 
     /**
@@ -89,7 +89,7 @@ public class EditProfileBean implements Serializable {
      * @return the value of addressLine2
      */
     public String getAddressLine2() {
-        return customer.getAddressline1();
+        return this.addressLine2;
     }
 
     /**
@@ -108,7 +108,7 @@ public class EditProfileBean implements Serializable {
      * @return the value of addressLine1
      */
     public String getAddressLine1() {
-        return customer.getAddressline2();
+        return this.addressLine1;
     }
 
     /**
@@ -129,25 +129,8 @@ public class EditProfileBean implements Serializable {
      */
     public EditProfileBean() {
         
-        System.err.println("EditProfileConstructor invoked");
-        Integer userId = null;
-        String userName  = FacesContext.getCurrentInstance()
-                    .getExternalContext().getRemoteUser();
-        System.err.println("User Name" + userName + " UserId: ");
-        if(userName != null)
-        {
-           userId = userf.getCustomerIdByUsername(userName);          
-        }
-        
-        Customer cust = cf.find(userId);
-        if(cust == null)
-        {
-            System.out.println("Customer is null");
-        }
-        this.customer = cust;
         //Gp14message custMessae = msgf.find(userId);
-        //this.message = custMessae.getMessage();
-        
+        //this.message = custMessae.getMessage();     
     }
     
     /**
@@ -195,7 +178,7 @@ public class EditProfileBean implements Serializable {
      * @return the value of city
      */
     public String getCity() {
-        return customer.getCity();
+        return this.city;
     }
 
     /**
@@ -214,7 +197,7 @@ public class EditProfileBean implements Serializable {
      * @return the value of name
      */
     public String getName() {
-        return customer.getName();
+        return this.name;
     }
 
     /**
@@ -243,4 +226,51 @@ public class EditProfileBean implements Serializable {
 //        cf.updateCustomer(userId,  name,  addressLine1,  addressLine2, 
 //             city,  state,  email,  phone);
     }    
+    
+    
+    public Customer getCustomer()
+    {
+        System.err.println("Get Customer got invoked");
+        Integer userId = null;
+        String userName  = FacesContext.getCurrentInstance()
+                    .getExternalContext().getRemoteUser();
+        
+        if(userName != null)
+        {
+           System.err.println("User Name " + userName);
+           userId = userf.getCustomerIdByUsername(userName);
+           System.err.println(" UserId: " + userId);
+        }
+        
+        Customer cust = cf.getCustomerById(userId);
+        if(cust == null)
+        {
+            System.out.println("Customer is null");
+        }
+        return cust;
+    }
+    
+    public String getCutomerMessage()
+    {
+        Integer custId = null;
+        custId = getLoggedInUserId();
+        if(custId != null)
+        {
+            return msgf.getMessageById(custId);
+        }
+        else
+            return null;
+    }
+    
+    public Integer getLoggedInUserId()
+    {
+        Integer userId = null;
+        String userName  = FacesContext.getCurrentInstance()
+                    .getExternalContext().getRemoteUser();
+        if(userName != null)
+        {
+           userId = userf.getCustomerIdByUsername(userName);
+        }
+        return userId;
+    }
 }
