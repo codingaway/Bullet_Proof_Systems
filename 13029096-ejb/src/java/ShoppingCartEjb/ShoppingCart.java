@@ -19,25 +19,44 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 public class ShoppingCart implements ShoppingCartLocal {
-
+    /**
+     * A list of Products for the Shopping cart activities
+     */
     private List<PurchaseItem>cardProducts = new ArrayList();
     
     
-    
+    /**
+     * Entity Manager to allow access to Entities
+     */
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
 
+    /**
+     * 
+     * @return a List of Purchase Items
+     * This method return a List of Purchase Items chosen by the user
+     * and added to his Shopping Cart
+     */
     @Override
     public List<PurchaseItem> getProducts() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     return cardProducts;
     }
-
+    /**
+     * 
+     * @param item 
+     * This method adds a Purchase Item
+     */
     @Override
     public void addProduct(PurchaseItem item) {
       cardProducts.add(item);
       System.out.println(item.p.getDescription());
     }
+    /**
+     * 
+     * @param product_id 
+     * This method removes a product from the the list of PurchaseItems
+     */
     @Override
     public void removeProduct(int product_id) {
         for(int i=0;i<cardProducts.size();i++){ 

@@ -13,11 +13,15 @@ import javax.ejb.Local;
 
 /**
  *
- * @author Vilma
+ * @author Anon
  */
 @Local
 public interface ShoppingCartLocal {
-    
+    /**
+     * 
+     * This Interface is provides methods 
+     * for the the ShoppingCart EnterPrice Bean class 
+     */
     public List<PurchaseItem>getProducts();
     public void addProduct(PurchaseItem item);
     public void removeProduct(int product_id);
