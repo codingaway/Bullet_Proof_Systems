@@ -31,9 +31,9 @@ public class EditProfileBean implements Serializable {
     private String city;
     private String state;
     private String email;   
-    private String message;   
     private String phone;
-    private Customer customer;
+    private Customer customer; 
+    private String message;
     
     @ManagedProperty(value = "userProfileBean")
     private UserProfileBean upb;
@@ -47,6 +47,17 @@ public class EditProfileBean implements Serializable {
     @EJB
     private Gp14messageFacade msgf;
 
+    
+    /**
+     * Creates a new instance of EditProfileBean
+     */
+    public EditProfileBean() {
+        
+        //Gp14message custMessae = msgf.find(userId);
+        //this.message = this.getCutomerMessage();
+    }
+    
+    
     /**
      * Get the value of phone
      *
@@ -120,38 +131,6 @@ public class EditProfileBean implements Serializable {
         this.addressLine1 = addressLine1;
     }
 
-    
-   
-    
-    
-    /**
-     * Creates a new instance of EditProfileBean
-     */
-    public EditProfileBean() {
-        
-        //Gp14message custMessae = msgf.find(userId);
-        //this.message = custMessae.getMessage();     
-    }
-    
-    /**
-     * Get the value of message
-     *
-     * @return the value of message
-     */
-    public String getMessage() {
-        return message;
-    }
-
-    /**
-     * Set the value of message
-     *
-     * @param message new value of message
-     */
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-
     /**
      * Get the value of state
      *
@@ -211,7 +190,7 @@ public class EditProfileBean implements Serializable {
     
     
     
-    public void updateProfile()
+    public String updateProfile()
     {   
         Integer userId = null;
         String userName  = FacesContext.getCurrentInstance()
@@ -225,6 +204,7 @@ public class EditProfileBean implements Serializable {
              + " " + city  + " " +   state  + " " +  email  + " " + phone);
 //        cf.updateCustomer(userId,  name,  addressLine1,  addressLine2, 
 //             city,  state,  email,  phone);
+        return "success";
     }    
     
     
@@ -250,7 +230,7 @@ public class EditProfileBean implements Serializable {
         return cust;
     }
     
-    public String getCutomerMessage()
+    private String getCutomerMessage()
     {
         Integer custId = null;
         custId = getLoggedInUserId();
@@ -273,4 +253,27 @@ public class EditProfileBean implements Serializable {
         }
         return userId;
     }
+    
+        /**
+     * Get the value of message
+     *
+     * @return the value of message
+     */
+    public String getMessage() {
+        if(this.message == null)
+        {
+            this.message = this.getCutomerMessage();
+        }
+        return message;
+    }
+
+    /**
+     * Set the value of message
+     *
+     * @param message new value of message
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
 }
