@@ -12,7 +12,7 @@ GlassFish realm configuration:
 	- Right click again and select "View Domain Admin Console", (This should open default browser pointing you to http://localhost:4848/) 
 
 	- Configurations > server-config > Select on "Security"
-		Check "Default Principal To Role Mapping" to "Enable"
+		Check "Default Principal To Role Mapping" to "Enable" then Click "Save"
 
 	- Select "Configurations > server-config > Security > Realms" and click "New..." . 
 	- Enter a name JDBCRealm and select the com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm from the drop down. Fill in the 

@@ -32,7 +32,7 @@ public class EditProfileBean implements Serializable {
     private String state;
     private String email;   
     private String message;   
-    private String phone;  
+    private String phone;
     private Customer customer;
     
     @ManagedProperty(value = "userProfileBean")
@@ -133,7 +133,7 @@ public class EditProfileBean implements Serializable {
         Integer userId = null;
         String userName  = FacesContext.getCurrentInstance()
                     .getExternalContext().getRemoteUser();
-        System.err.println("User Name" + userName + " UserId: " + userId);
+        System.err.println("User Name" + userName + " UserId: ");
         if(userName != null)
         {
            userId = userf.getCustomerIdByUsername(userName);          
