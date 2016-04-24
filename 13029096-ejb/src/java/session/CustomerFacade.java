@@ -42,4 +42,20 @@ public class CustomerFacade extends AbstractFacade<Customer> {
             return null;     
     }
     
+    public void updateCustomer(int id, String name, String addr1, String addr2, 
+            String city, String state, String email, String phone) 
+    {
+        Customer customer = getCustomerById(id);
+        if (customer != null) {
+            customer.setName(name);
+            customer.setCity(city);
+            customer.setState(state);
+            customer.setAddressline1(addr1);
+            customer.setAddressline2(addr2);
+            customer.setEmail(email);
+            customer.setPhone(phone);
+        }
+    }
+
+    
 }

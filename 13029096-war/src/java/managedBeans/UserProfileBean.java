@@ -6,6 +6,7 @@
 package managedBeans;
 
 import entity.Customer;
+import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedProperty;
@@ -21,7 +22,7 @@ import session.Gp14userFacade;
  */
 @Named(value = "userProfileBean")
 @RequestScoped
-public class UserProfileBean {
+public class UserProfileBean implements Serializable {
     
     @EJB
     private Gp14userFacade uf;
@@ -44,16 +45,13 @@ public class UserProfileBean {
     public Customer getCutomerDetails()
     {
         Integer profileId = null;
-        System.err.println("Customer ID param: " + custId);
         if(custId == null) // view request without parameters -> Viewing own profile
         {
-            System.err.println("Customer ID is NULL: ");
             String userName  = FacesContext.getCurrentInstance()
                     .getExternalContext().getRemoteUser();
             if(userName != null)
             {
                 profileId = uf.getCustomerIdByUsername(userName);
-                System.err.println("Getting logged in users Id ");
             }
         }
         else
@@ -71,17 +69,9 @@ public class UserProfileBean {
     public String getCutomerMessage()
     {
         Integer profileId = null;
-        System.err.println("Customer ID param: " + custId);
         if(custId == null) // view request without parameters -> Viewing own profile
         {
-            System.err.println("Customer ID is NULL: ");
-            String userName  = FacesContext.getCurrentInstance()
-                    .getExternalContext().getRemoteUser();
-            if(userName != null)
-            {
-                profileId = uf.getCustomerIdByUsername(userName);
-                System.err.println("Getting logged in users Id ");
-            }
+             profileId = getLoggedInUserId();
         }
         else
             profileId = custId;
@@ -105,6 +95,18 @@ public class UserProfileBean {
 
     public void setCustId(Integer custId) {
         this.custId = custId;
+    }
+    
+    public Integer getLoggedInUserId()
+    {
+        Integer userId = null;
+        String userName  = FacesContext.getCurrentInstance()
+                    .getExternalContext().getRemoteUser();
+        if(userName != null)
+        {
+           userId = uf.getCustomerIdByUsername(userName);
+        }
+        return userId;
     }
     
 }
