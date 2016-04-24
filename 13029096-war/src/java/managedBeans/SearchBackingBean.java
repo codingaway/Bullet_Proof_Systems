@@ -307,7 +307,6 @@ public class SearchBackingBean {
      */
     public Customer getCustomer() {
         System.out.println("I am calling and this is what I found");
-        System.out.println(userSearches.getSingleProduct().getDescription());
         return this.userSearches.getSingleCustomer();
     }
     /**
