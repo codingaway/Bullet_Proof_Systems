@@ -162,22 +162,34 @@ public class SearchBackingBean {
      */
     public void searchProductByID(int product_id){
         if(this.productFacade.find(product_id)!=null){
+            System.out.println("I am adding new Product");
           this.userSearches.addSingleSearchResultForProduct((Product)this.productFacade.find(product_id));
           this.userSearches.setSingleProductFound(true);
+          System.out.println("I am setting to: "+this.userSearches.getProductFound());
           this.userSearches.setSuccessfulSearch(true);
         }
         else{
         this.userSearches.setSuccessfulSearch(false);
+        System.out.println("I am adding nothing");
         }
     }
+    /**
+     * 
+     * @param customer_id 
+     * Search for a Product by its id
+     * will update the the EJB's customer attribute 
+     */
     public void searchCustomerbyID(int customer_id){
         if(this.customerFacade.find(customer_id)!=null){
           this.userSearches.addSingleSerachResultForCustomer((Customer)this.customerFacade.find(customer_id));
+          System.out.println("I am adding new Customer");
           this.userSearches.setSingleCustomerFound(true);
+          System.out.println("I am setting to: "+this.userSearches.getCustomerFound());
           this.userSearches.setSuccessfulSearch(true);
         }
         else{
             this.userSearches.setSuccessfulSearch(false);
+            System.out.println("I am adding nothing");
         }
     }
     public void searchProductByNAme(String name){
@@ -194,7 +206,13 @@ public class SearchBackingBean {
        }
     }
     public String initialiseSearch(){
-        String page = "";
+      String page = "";
+      this.clearLists();
+      this.userSearches.setSuccessfulSearch(false);
+      this.userSearches.setIsNoResult(false);
+      this.userSearches.setIserror(false);
+      this.userSearches.setSingleProductFound(false);
+      this.userSearches.setSingleCustomerFound(false);
       switch(this.userSearches.getUserSearchchoice()){
           
           case 1: page = this.performAction1();break;
@@ -223,9 +241,7 @@ public class SearchBackingBean {
      */
     public String performAction1(){
         
-       this.clearLists();
-       this.userSearches.setIsNoResult(false);
-       this.userSearches.setIserror(false);
+       
        String  result_page ="searchresults";
        switch(this.userSearches.getUser_selection1()){
            case 1: try{
@@ -251,9 +267,6 @@ public class SearchBackingBean {
     }
     public String performAction2(){
         System.out.println("I am i here!!");
-        this.clearLists();
-        this.userSearches.setIsNoResult(false);
-        this.userSearches.setIserror(false);
         String result_page="searchresults";
         switch(this.userSearches.getUser_selection1()){
            case 1: try{ 
@@ -284,6 +297,8 @@ public class SearchBackingBean {
      * @return a single product from Enterprise Bean
      */
     public Product getProduct() {
+        System.out.println("I am calling and this is what I found");
+        System.out.println(userSearches.getSingleProduct().getDescription());
         return this.userSearches.getSingleProduct();
     }
     /**
@@ -291,6 +306,7 @@ public class SearchBackingBean {
      * @return a single customer from EnterPrice Bean 
      */
     public Customer getCustomer() {
+        System.out.println("I am calling and this is what I found");
         return this.userSearches.getSingleCustomer();
     }
     /**

@@ -10,86 +10,79 @@
             Welcome to Distributed Systems project
         </ui:define>
         <ui:define name="sidebar">
-            
+
         </ui:define>
         <ui:define name="main_content">
             <!-- clear all lists -->
-            
+
             <h2> Search Result</h2>
             <h:panelGrid id="grid" columns="1">
-                <h:panelGroup id="searchResult_products" rendered="#{searchBackingBean.productsNotEmpty()}" >
-                  <h:dataTable value="#{searchBackingBean.getSearchResultsForProducts()}" var="p1">
-                     <h:column >        
-                        <div class="list-group">
-                         <a href="#" class="list-group-item active">
-                             <h4 class="list-group-item-heading">Name:&nbsp;#{p1.description}</h4>
-                             <p class="list-group-item-text">Product ID:&nbsp;#{p1.productId}</p>
-                          <p class="list-group-item-heading">Price:#{p1.purchaseCost}</p>
-                          <p class="list-group-item-heading">Quantity:#{p1.quantityOnHand}</p>
-                         </a>
-                        </div>
-                     </h:column>
+                <h:panelGroup id="searchResult_products" rendered="#{searchBackingBean.productsNotEmpty()}">
+                    <h:dataTable value="#{searchBackingBean.getSearchResultsForProducts()}" var="p1">
+                        <h:column >        
+                            <div class="list-group">
+                                <a href="#id" class="list-group-item ">
+                                    <h4 class="list-group-item-heading alert-success">Name:&nbsp;#{p1.description}</h4>
+                                    <p class="list-group-item-text">Product ID:&nbsp;#{p1.productId}</p>
+                                    <p class="list-group-item-heading">Price:#{p1.purchaseCost}</p>
+                                    <p class="list-group-item-heading">Quantity:#{p1.quantityOnHand}</p>
+                                </a>
+                            </div>
+                        </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <h:panelGroup id="searchResult_customers" rendered="#{searchBackingBean.customersNotEmpty()}">
                     <h:dataTable value="#{searchBackingBean.getSearchResultForCustomers()}" var="c1" styleClass="list-group" >
                         <h:column>
-                           <div class="list-group">
-                             <a href="#" class="list-group-item active">
-                              <h4 class="list-group-item-heading">Name:&nbsp;#{c1.name}</h4>
-                              <p class="list-group-item-text" >Customer:&nbsp;#{c1.customerId}</p>
-                              <p class="list-group-item-text">Phone:&nbsp;#{c1.phone}</p>
-                              <p class="list-group-item-text">Fax:&nbsp;#{c1.fax}</p>
-                              <p class="list-group-item-text">Email:&nbsp;#{c1.email}</p>
-                              <p class="list-group-item-text">Address 1:&nbsp;#{c1.addressline1}</p>
-                              <p class="list-group-item-text">Address 2:&nbsp;#{c1.addressline2}</p>
-                              <p class="list-group-item-text">Post Box:&nbsp;#{c1.zip}</p>
-                            </a>
-                          </div>
+                            <div class="list-group ">
+                                <a href="#" class="list-group-item ">
+                                    <h4 class="list-group-item-heading alert-success">Name:&nbsp;#{c1.name}</h4>
+                                    <p class="list-group-item-text" >Customer:&nbsp;#{c1.customerId}</p>
+                                    <p class="list-group-item-text">Phone:&nbsp;#{c1.phone}</p>
+                                    <p class="list-group-item-text">Fax:&nbsp;#{c1.fax}</p>
+                                    <p class="list-group-item-text">Email:&nbsp;#{c1.email}</p>
+                                    <p class="list-group-item-text">Address 1:&nbsp;#{c1.addressline1}</p>
+                                    <p class="list-group-item-text">Address 2:&nbsp;#{c1.addressline2}</p>
+                                    <p class="list-group-item-text">Post Box:&nbsp;#{c1.zip}</p>
+                                </a>
+                            </div>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
-                <h:panelGroup id="searchResult_a_product" rendered="#{searchBackingBean.isProductFound()} ">
-                    <h:dataTable  styleClass="list-group" >
-                      <h:column>
-                         <div class="list-group">
-                            <a href="#" class="list-group-item active">
-                                <h4 class="list-group-item-heading">Name:&nbsp;#{searchBackingBean.getProduct().description}</h4>
-                                <p class="list-group-item-text">Product ID:&nbsp;#{searchBackingBean.getProduct().productId}</p>
-                                <p class="list-group-item-text">Price:&nbsp;#{searchBackingBean.getProduct().getPurchaseCost}</p>
-                                <p class="list-group-item-text">Quantity:&nbsp;#{searchBackingBean.getProduct().quantityOnHand}</p>
-                            </a>
-                       </div>
-                      </h:column>
-                  </h:dataTable>
+                <h:panelGroup id="searchResult-a-product" rendered="#{searchBackingBean.isProductFound()}">    
+                    <div class="list-group">
+                        <a href="#" class="list-group-item ">
+                            <h4 id="name" class="list-group-item-heading alert-success"><span class="text-primary">Name:</span>&nbsp;#{searchBackingBean.getProduct().description}</h4>
+                            <p class="list-group-item-text"><span class="text-primary">Product ID:</span>&nbsp;#{searchBackingBean.getProduct().productId}</p>
+                            <p class="list-group-item-text"><span class="text-primary">Price:</span>&nbsp;#{searchBackingBean.getProduct().purchaseCost}</p>
+                            <p class="list-group-item-text"><span class="text-primary">Quantity:</span>&nbsp;#{searchBackingBean.getProduct().quantityOnHand}</p>
+                        </a>
+                    </div>
                 </h:panelGroup>
-                <h:panelGroup id="searchResult_a_customer" rendered="#{searchBackingBean.isCustomerFound()}">
-                    <h:dataTable  styleClass="list-group" >
-                      <h:column>
-                          <div class="list-group">
-                             <a href="#" class="list-group-item active">
-                                <h4 class="list-group-item-heading">Name:&nbsp;#{searchBackingBean.getCustomer.getName()}</h4>
-                                <p class="list-group-item-text" >Customer:&nbsp;#{searchBackingBean.getCustomer.getCustomerId()}</p>
-                                <p class="list-group-item-text">Phone:&nbsp;#{searchBackingBean.getCustomer.getPhone()}</p>
-                                <p class="list-group-item-text">Fax:&nbsp;#{searchBackingBean.getCustomer.getFax()}</p>
-                                <p class="list-group-item-text">Email:&nbsp;#{searchBackingBean.getCustomer.getEmail}</p>
-                                <p class="list-group-item-text">Address 1:&nbsp;#{searchBackingBean.getCustomer.getAddressline1}</p>
-                                <p class="list-group-item-text">Address 2:&nbsp;#{searchBackingBean.getCustomer.getAddressline2}</p>
-                                <p class="list-group-item-text">Post Box:&nbsp;#{searchBackingBean.getCustomer.getZip}</p>
-                             </a>
-                         </div>
-                      </h:column>
-                  </h:dataTable>        
+
+                <h:panelGroup id="searchResult-a-customer" rendered="#{searchBackingBean.isCustomerFound() eq true}">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item ">
+                            <h4 class="list-group-item-heading alert-success">Name:&nbsp;#{searchBackingBean.getCustomer().getName()}</h4>
+                            <p class="list-group-item-text" >Customer:&nbsp;#{searchBackingBean.getCustomer().getCustomerId()}</p>
+                            <p class="list-group-item-text">Phone:&nbsp;#{searchBackingBean.getCustomer().getPhone()}</p>
+                            <p class="list-group-item-text">Fax:&nbsp;#{searchBackingBean.getCustomer().getFax()}</p>
+                            <p class="list-group-item-text">Email:&nbsp;#{searchBackingBean.getCustomer().getEmail()}</p>
+                            <p class="list-group-item-text">Address 1:&nbsp;#{searchBackingBean.getCustomer().getAddressline1()}</p>
+                            <p class="list-group-item-text">Address 2:&nbsp;#{searchBackingBean.getCustomer().getAddressline2()}</p>
+                            <p class="list-group-item-text">Post Box:&nbsp;#{searchBackingBean.getCustomer().getZip()}</p>
+                        </a>
+                    </div>   
                 </h:panelGroup>
                 <h:panelGroup id="searchResult_a_Message" rendered="#{searchBackingBean.getResultStatus()}">
-                      
-                       <h4 class="glyphicon glyphicon-info-sign"></h4>
-                       <h3>#{errorMessageBackingBean.userMessage()}</h3>    
+
+                    <h4 class="glyphicon glyphicon-info-sign"></h4>
+                    <h3>#{errorMessageBackingBean.userMessage()}</h3>    
                 </h:panelGroup>
                 <h:panelGroup id="searchResult_a_Error_Message" rendered="#{searchBackingBean.getErrorStatus()}">
-                       
-                       <h4 class="glyphicon glyphicon-alert"></h4>
-                       <h3>#{errorMessageBackingBean.errorMessage()}</h3>    
+
+                    <h4 class="glyphicon glyphicon-alert"></h4>
+                    <h3>#{errorMessageBackingBean.errorMessage()}</h3>    
                 </h:panelGroup>
             </h:panelGrid>
         </ui:define>
