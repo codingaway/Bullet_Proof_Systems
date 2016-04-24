@@ -5,6 +5,8 @@
  */
 package managedBeans;
 
+import entity.Customer;
+import entity.Gp14message;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -12,6 +14,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import session.CustomerFacade;
+import session.Gp14messageFacade;
 import session.Gp14userFacade;
 
 /**
@@ -29,7 +32,8 @@ public class EditProfileBean implements Serializable {
     private String state;
     private String email;   
     private String message;   
-    private String phone;
+    private String phone;  
+    private Customer customer;
     
     @ManagedProperty(value = "userProfileBean")
     private UserProfileBean upb;
@@ -39,6 +43,9 @@ public class EditProfileBean implements Serializable {
     
     @EJB
     private Gp14userFacade userf;
+    
+    @EJB
+    private Gp14messageFacade msgf;
 
     /**
      * Get the value of phone
@@ -46,7 +53,7 @@ public class EditProfileBean implements Serializable {
      * @return the value of phone
      */
     public String getPhone() {
-        return phone;
+        return customer.getPhone();
     }
 
     /**
@@ -64,7 +71,7 @@ public class EditProfileBean implements Serializable {
      * @return the value of email
      */
     public String getEmail() {
-        return email;
+        return customer.getEmail();
     }
 
     /**
@@ -82,7 +89,7 @@ public class EditProfileBean implements Serializable {
      * @return the value of addressLine2
      */
     public String getAddressLine2() {
-        return addressLine2;
+        return customer.getAddressline1();
     }
 
     /**
@@ -101,7 +108,7 @@ public class EditProfileBean implements Serializable {
      * @return the value of addressLine1
      */
     public String getAddressLine1() {
-        return addressLine1;
+        return customer.getAddressline2();
     }
 
     /**
@@ -121,6 +128,26 @@ public class EditProfileBean implements Serializable {
      * Creates a new instance of EditProfileBean
      */
     public EditProfileBean() {
+        
+        System.err.println("EditProfileConstructor invoked");
+        Integer userId = null;
+        String userName  = FacesContext.getCurrentInstance()
+                    .getExternalContext().getRemoteUser();
+        System.err.println("User Name" + userName + " UserId: " + userId);
+        if(userName != null)
+        {
+           userId = userf.getCustomerIdByUsername(userName);          
+        }
+        
+        Customer cust = cf.find(userId);
+        if(cust == null)
+        {
+            System.out.println("Customer is null");
+        }
+        this.customer = cust;
+        //Gp14message custMessae = msgf.find(userId);
+        //this.message = custMessae.getMessage();
+        
     }
     
     /**
@@ -168,7 +195,7 @@ public class EditProfileBean implements Serializable {
      * @return the value of city
      */
     public String getCity() {
-        return city;
+        return customer.getCity();
     }
 
     /**
@@ -187,7 +214,7 @@ public class EditProfileBean implements Serializable {
      * @return the value of name
      */
     public String getName() {
-        return name;
+        return customer.getName();
     }
 
     /**
@@ -209,11 +236,11 @@ public class EditProfileBean implements Serializable {
         if(userName != null)
         {
            userId = userf.getCustomerIdByUsername(userName);
+           
         }
         System.err.println(userId + " " + name  + " " +  addressLine1  + " " + addressLine2 
              + " " + city  + " " +   state  + " " +  email  + " " + phone);
 //        cf.updateCustomer(userId,  name,  addressLine1,  addressLine2, 
 //             city,  state,  email,  phone);
-    }
-    
+    }    
 }
