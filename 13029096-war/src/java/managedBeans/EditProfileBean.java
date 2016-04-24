@@ -64,6 +64,16 @@ public class EditProfileBean implements Serializable {
      * @return the value of phone
      */
     public String getPhone() {
+        if(customer == null)
+        {
+            customer = getCustomer();
+        }
+        
+        if(this.phone == null && customer != null)
+        {
+            this.phone = customer.getPhone();
+        }
+       
         return this.phone;
     }
 
@@ -82,6 +92,17 @@ public class EditProfileBean implements Serializable {
      * @return the value of email
      */
     public String getEmail() {
+        
+        if(customer == null)
+        {
+            customer = getCustomer();
+        }
+        
+        if(this.email == null && customer != null)
+        {
+            this.email = customer.getEmail();
+        }
+        
         return this.email;
     }
 
@@ -100,6 +121,15 @@ public class EditProfileBean implements Serializable {
      * @return the value of addressLine2
      */
     public String getAddressLine2() {
+        if(customer == null)
+        {
+            customer = getCustomer();
+        }
+        if(this.addressLine2 == null && customer != null)
+        {
+            this.addressLine2 = customer.getAddressline2();
+        }
+        
         return this.addressLine2;
     }
 
@@ -119,6 +149,15 @@ public class EditProfileBean implements Serializable {
      * @return the value of addressLine1
      */
     public String getAddressLine1() {
+        if(customer == null)
+        {
+            customer = getCustomer();
+        }
+        if(this.addressLine1 == null && customer != null)
+        {
+            this.addressLine1 = customer.getAddressline1();
+        }
+        
         return this.addressLine1;
     }
 
@@ -137,6 +176,16 @@ public class EditProfileBean implements Serializable {
      * @return the value of state
      */
     public String getState() {
+        if(customer == null)
+        {
+            customer = getCustomer();
+        }
+        
+        if(this.state == null && customer != null)
+        {
+            this.state = customer.getState();
+        }
+        
         return state;
     }
 
@@ -157,6 +206,15 @@ public class EditProfileBean implements Serializable {
      * @return the value of city
      */
     public String getCity() {
+        if(customer == null)
+        {
+            customer = getCustomer();
+        }
+        if(this.city == null && customer != null)
+        {
+            this.city = customer.getCity();
+        }
+        
         return this.city;
     }
 
@@ -176,6 +234,15 @@ public class EditProfileBean implements Serializable {
      * @return the value of name
      */
     public String getName() {
+        
+        if(customer == null)
+        {
+            customer = getCustomer();
+        }
+        if(this.name == null && customer != null)
+        {
+            this.name = customer.getName();
+        }
         return this.name;
     }
 
@@ -202,13 +269,17 @@ public class EditProfileBean implements Serializable {
         }
         System.err.println(userId + " " + name  + " " +  addressLine1  + " " + addressLine2 
              + " " + city  + " " +   state  + " " +  email  + " " + phone);
-//        cf.updateCustomer(userId,  name,  addressLine1,  addressLine2, 
-//             city,  state,  email,  phone);
-        return "success";
+        
+        if(cf.updateCustomer(userId,  name,  addressLine1,  addressLine2, 
+             city,  state,  email,  phone, message))
+            
+            return "success";
+        else
+            return "error";
     }    
     
     
-    public Customer getCustomer()
+    private Customer getCustomer()
     {
         System.err.println("Get Customer got invoked");
         Integer userId = null;
@@ -259,8 +330,9 @@ public class EditProfileBean implements Serializable {
      *
      * @return the value of message
      */
-    public String getMessage() {
-        if(this.message == null)
+    public String getMessage() 
+    {
+        if(this.message == null )
         {
             this.message = this.getCutomerMessage();
         }

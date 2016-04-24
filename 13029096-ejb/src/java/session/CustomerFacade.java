@@ -6,6 +6,7 @@
 package session;
 
 import entity.Customer;
+import entity.Gp14message;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -42,18 +43,42 @@ public class CustomerFacade extends AbstractFacade<Customer> {
             return null;     
     }
     
-    public void updateCustomer(int id, String name, String addr1, String addr2, 
-            String city, String state, String email, String phone) 
+    public boolean updateCustomer(Integer id, String name, String addr1, String addr2, 
+            String city, String state, String email, String phone, String message) 
     {
-        Customer customer = getCustomerById(id);
-        if (customer != null) {
-            customer.setName(name);
-            customer.setCity(city);
-            customer.setState(state);
-            customer.setAddressline1(addr1);
-            customer.setAddressline2(addr2);
-            customer.setEmail(email);
-            customer.setPhone(phone);
+        try
+        {
+            Customer customer = getCustomerById(id);
+            if (customer != null) 
+            {
+                customer.setName(name);
+                customer.setCity(city);
+                customer.setState(state);
+                customer.setAddressline1(addr1);
+                customer.setAddressline2(addr2);
+                customer.setEmail(email);
+                customer.setPhone(phone);
+
+                Gp14message custMessage = em.find(Gp14message.class, id);
+                if(custMessage == null)
+                {
+                    System.err.println("Gp14Message is NULL");
+                    custMessage = new Gp14message(id);
+                    custMessage.setMessage(message);
+                    em.persist(custMessage);
+                }
+                else
+                {
+                    System.err.println("Gp14Message is NOT NULL");
+                    custMessage.setMessage(message);
+                }
+                em.flush();
+            }
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
         }
     }
 
