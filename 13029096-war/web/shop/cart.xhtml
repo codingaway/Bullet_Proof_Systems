@@ -10,22 +10,14 @@
             Shopping Cart
         </ui:define>
         <ui:define name="sidebar">
-            <p class="lead">Shop Name</p>
-            <h3>Category</h3>
-            <div class="list-group">
-                <h:dataTable value="#{catelog.productCodeList}"
-                             var="p" styleClass="list-group" >
-                    <h:column>
-                        <a href="#" class="list-group-item">#{p.description}</a>           
-                    </h:column>
-                </h:dataTable>
-            </div>
+            <p class="lead">Checkout</p>
+            <h:commandLink action="catalog" value="Continue shopping" />
         </ui:define>
         <ui:define name="main_content">
             <div class="row">
                 <div class="jumbotron">
                     <h4 align="center">Your Current Shopping Cart
-                        <h:commandButton style="margin-left: 60px;" styleClass="btn btn-default" action="checkout.xhtml" value="Checkout"></h:commandButton>&nbsp;&nbsp;<h:commandButton style="margin-left: 60px;" styleClass="btn btn-default" action="#{cardBackingBean.cancelTransaction}" value="Cancel"></h:commandButton></h4>
+                        <h:commandButton style="margin-left: 60px;" styleClass="btn btn-default" action="#{checkoutBean.check()}" value="Checkout"></h:commandButton></h4>
    
                         <h5>#{checkoutBean.message}</h5>
                         <h:dataTable  class="table-bordered " style=" padding: 8px;" value="#{cardBackingBean.returnProducts()}" var="item">
@@ -44,6 +36,7 @@
                                 </h:commandButton>&nbsp;&nbsp;
                                 <br/>
                             </h:column>
+
                         </h:dataTable>
           
                 </div>

@@ -11,15 +11,7 @@
         </ui:define>  
         <ui:define name="sidebar">
             <p class="lead">Shop Name</p>
-            <h3>Category</h3>
-            <div class="list-group">
-                <h:dataTable value="#{catelog.productCodeList}"
-                             var="p" styleClass="list-group" >
-                    <h:column>
-                        <a href="#" class="list-group-item">#{p.description}</a>           
-                    </h:column>
-                </h:dataTable>
-            </div>
+            <h3>Confirmation</h3>
         </ui:define>
         <ui:define name="main_content">
             <h4>Your order has been received.<br/>
@@ -27,7 +19,46 @@
                     #{pO_Bean.createPO()}
             </h4>
             
+            <h5><b>Purchase Order</b></h5><br/>
             
+            <h:dataTable styleClass="table" value='#{pO_Bean.pos}' var='po'
+                        >
+                <h:column>
+                    <f:facet name='header' >Product ID</f:facet>
+                        #{po.productId}
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>Order Number</f:facet>
+                        #{po.orderNum}
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>Customer ID</f:facet>
+                        #{po.customerId}
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>Quantity</f:facet>
+                        #{po.quantity}
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>Sales Date</f:facet>
+                        #{po.salesDate}
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>Shipping Cost</f:facet>
+                        #{po.shippingCost}
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>Shipping Date</f:facet>
+                        #{po.shippingDate}
+                </h:column>
+                <h:column>
+                    <f:facet name='header'>Courier</f:facet>
+                        #{po.freightCompany}
+                </h:column>
+            </h:dataTable>
+            #{checkoutBean.calculateCost()}
+            <h6><b>Total Cost : #{checkoutBean.totalCost}</b></h6>
+            #{checkoutBean.clearList()}
             
         </ui:define>
     </ui:composition>

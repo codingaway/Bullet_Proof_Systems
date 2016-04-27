@@ -6,7 +6,9 @@
 package managedBeans;
 
 import ShoppingCartEjb.ShoppingCartLocal;
+import admin.adminBeanLocal;
 import checkout.checkoutProcessLocal;
+import entity.ProductCode;
 import java.math.BigDecimal;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -18,6 +20,9 @@ import javax.inject.Named;
 @Named(value = "checkoutBean")
 @RequestScoped
 public class CheckoutBean {
+
+    @EJB
+    private adminBeanLocal adminBean;
 
     @EJB
     private ShoppingCartLocal shoppingCart;
@@ -39,7 +44,7 @@ public class CheckoutBean {
     public String logCancel()
     {
         process.setCancelLog();
-        return "cart";
+        return "catalog";
     }
     
      public String logProcess()
@@ -48,8 +53,8 @@ public class CheckoutBean {
         
         if(!result.equals("confirmation"))
         {
-            setMessage("<b>That quantity is no longer available for "+result+"."
-                        +"<br/>Please select another quantity.</b><br/>");
+            setMessage("That quantity is no longer available for "+result+"."
+                        +"Please select another quantity.");
             result = "cart";
         }
         
@@ -73,9 +78,20 @@ public class CheckoutBean {
         this.message = message;
     }
     
+    public void clearList()
+    {
+        shoppingCart.getProducts().clear();
+    }
     
-
-    
+   
+    public String check()
+    {
+        if(shoppingCart.getProducts().size()>0)
+            return "checkout";
+        
+        else
+            return null;
+    }
 
    
      

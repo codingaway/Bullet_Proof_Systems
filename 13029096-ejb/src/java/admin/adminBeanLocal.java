@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package checkout;
+package admin;
 
-import java.math.BigDecimal;
+
+import entity.Manufacturer;
+import entity.Product;
+import entity.ProductCode;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,9 +17,8 @@ import javax.ejb.Local;
  * @author Enda
  */
 @Local
-public interface checkoutProcessLocal {
+public interface adminBeanLocal {
     
-    public void setCancelLog();
-     public BigDecimal getTotalCost();
-     public String checkQty();
+    public void addItem(Product po, String code, int id);
+    public void removeItem(final int po);
 }

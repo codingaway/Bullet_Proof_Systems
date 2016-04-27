@@ -5,6 +5,8 @@
  */
 package PO;
 
+import entity.PurchaseOrder;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +15,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface CreatePOLocal {
-    public void createPO();
+    public  List<PurchaseOrder> createPO(Integer custId);
 }

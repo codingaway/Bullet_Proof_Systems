@@ -10,6 +10,7 @@ import entity.Customer;
 import entity.PurchaseOrder;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.*;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.naming.InitialContext;
@@ -47,6 +48,7 @@ public class CreatePO implements CreatePOLocal {
     //Customer customerID;
     private String message;
     private Date currentTime;
+    private List<PurchaseOrder> poList;
     private PurchaseOrder po;
     private Customer customer;
     private BigDecimal shipCost;
@@ -57,12 +59,11 @@ public class CreatePO implements CreatePOLocal {
     
     
     @Override
-    public void createPO()
+    public List<PurchaseOrder> createPO(Integer custId)
     {
         //transaction.begin();
-        System.out.print("\nTesting");
+        poList = new ArrayList();
         size = shoppingCart.getProducts().size();
-        currentTime = new Date(); 
         query = em.createNamedQuery("PurchaseOrder.findMax");
         orderNum= (int)query.getSingleResult();
 
@@ -70,13 +71,14 @@ public class CreatePO implements CreatePOLocal {
         
         for(int i=0;i<size;i++)
         {
+            currentTime = new Date();
             po = new PurchaseOrder();
             orderNum++;
         
             po.setOrderNum(orderNum);
                   
             query = em.createNamedQuery("Customer.findByCustomerId")
-                    .setParameter("customerId", 863);
+                    .setParameter("customerId", custId);
             
             customer = (Customer)query.getSingleResult();
             
@@ -88,13 +90,15 @@ public class CreatePO implements CreatePOLocal {
             po.setShippingDate(currentTime = new Date(curTwoWeeks));
             po.setShippingCost(shipCost = new BigDecimal(20));
             
+            poList.add(po);
+            
             logging.sendMessageToQueue("PO:--OrderNo:"+po.getOrderNum()+", CustID:"+po.getCustomerId()
             +", Carrier:"+po.getFreightCompany()+", ProdID:"+po.getProductId()+", Qty:"+po.getQuantity()
             +", DateSold:"+po.getSalesDate()+", ShipDate:"+po.getShippingDate()+", ShipCost:"+po.getShippingCost());
-            
-
-            em.persist(po);  
+             
+            em.persist(po);
         }
+        return poList;
     }
 
     public Date getCurrentTime() {

@@ -6,10 +6,10 @@
 package checkout;
 
 import ShoppingCartEjb.ShoppingCartLocal;
+import admin.adminBean;
+import admin.adminBeanLocal;
 import static com.oracle.jrockit.jfr.ContentType.Timestamp;
 import entity.Customer;
-import entity.Product;
-import entity.PurchaseOrder;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
@@ -26,6 +26,8 @@ import log.LoggingLocal;
  */
 @Stateless
 public class checkoutProcess implements checkoutProcessLocal, Serializable{
+
+    
 
     
     @EJB
@@ -52,7 +54,7 @@ public class checkoutProcess implements checkoutProcessLocal, Serializable{
     {
 
         size = shoppingCart.getProducts().size();
-        int id, i=0;
+        int i=0;
         while(i<size)
         {
             query = em.createNamedQuery("Product.findTotalQuantity")
@@ -93,13 +95,13 @@ public class checkoutProcess implements checkoutProcessLocal, Serializable{
             logging.sendMessageToQueue(message);
             message="";
         }
+        shoppingCart.getProducts().clear();
     }
     
     @Override
     public BigDecimal getTotalCost()
     {
         BigDecimal cost = new BigDecimal(0);
-        //BigDecimal result = cost.add(new BigDecimal(30));
         size = shoppingCart.getProducts().size();
         
         for(int i=0;i<size;i++)
@@ -116,6 +118,8 @@ public class checkoutProcess implements checkoutProcessLocal, Serializable{
     public void persist1(Object object) {
         em.persist(object);
     }
+    
+    
     
  
 

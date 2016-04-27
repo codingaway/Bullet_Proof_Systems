@@ -5,24 +5,40 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="../templates/common.xhtml">
+    <ui:composition template="/templates/common.xhtml">
         <ui:define name="title">
             Admin - Managed Shop
         </ui:define>
         <ui:define name="sidebar">
-            <h3>Category</h3>
-             <div class="text-right">
-                <ul class="nav nav-sidebar">
-                    <li><h:commandLink value="Manage produts" action="manage_products" /></li>
-                    <li><h:commandLink value="Process oders" action="processorders" /></li>
-                </ul>
-            </div>
+            <p class="lead">Shop Name</p>
+            <h3>Admin Options</h3>
+            <h:commandButton styleClass="btn btn-default" value="Add Item" action="manageshop.xhtml" />
         </ui:define>
         <ui:define name="main_content">
-
             <div class="row">
-                <h3>Admin Dashboard</h3>
-                
+                <h3>Product List</h3>
+                <h:dataTable value="#{catelog.products}"
+                             var="p" styleClass="" >
+                    <h:column>
+                        <div class="col-sm-12 col-lg-12 col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><a href="#">#{p.description}</a> </h3>
+                                    <h4 class="pull-right">€#{p.purchaseCost}</h4>
+                                </div>
+                                <div class="panel-body">
+                                    #{p.manufacturerId.name}
+                                    
+                                </div>
+                                <div class="panel-footer">
+                                    <h:commandButton styleClass="btn btn-default" value="Remove Item" action="#{administratorBean.removeItem(p.productId)}"/>
+                                    <span class="pull-right">In stock: #{p.quantityOnHand}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </h:column>
+                </h:dataTable>
+             
             </div>
         </ui:define>
     </ui:composition>

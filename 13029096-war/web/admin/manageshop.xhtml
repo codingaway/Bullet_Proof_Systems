@@ -1,12 +1,84 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
-</html>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+    <ui:composition template="/templates/common.xhtml">
+        <ui:define name="title">
+            Admin - Managed Shop
+        </ui:define>
+        <ui:define name="sidebar">
+            <p class="lead">Shop Name</p>
+            <h3>Category</h3>
+            <h:commandButton styleClass="btn btn-default" value="Delete Item" action="dashboard.xhtml" />
+        </ui:define>
+        <ui:define name="main_content">
+            
+            <div class="row">
+                <h3>Add New Item</h3><br/>
+                
+                <table border="1" style="width:50%">
+                    <tr>
+                        <td><b>Manufacturer</b></td>
+                        <td><h:selectOneMenu value="#{administratorBean.manufacturer}" style="width: 100%;height: 40px" converter="javax.faces.Integer" >
+                    <!--<f:converter converterId="converter" />-->
+                    <f:selectItem itemLabel="Select"/>
+                    <f:selectItems value="#{administratorBean.manufacturers}" var="m"
+                                   itemLabel="#{m.name}" itemValue="#{m.manufacturerId}" />
+                                 </h:selectOneMenu><br/></td> 
+                    </tr>
+                    <tr>
+                      <td><b>Product Code</b></td>
+                      <td><h:selectOneMenu value="#{administratorBean.code}" style="width: 100%;height: 40px" >
+                      <!--<f:converter converterId="converterCode" />-->
+                      <f:selectItem itemLabel="Select"/>
+                      <f:selectItems value="#{administratorBean.productCode}" var="p"
+                                     itemLabel="#{p.description}" itemValue="#{p.prodCode}" />
+                                 </h:selectOneMenu></td> 
+                    </tr>
+                    <tr>
+                      <td><b>Purchase Cost</b></td>
+                      <td><h:inputText id="cost" value="#{administratorBean.purchaseCost}" style="width: 100%;height: 40px">
+                    <f:validateDoubleRange minimum="0.1" maximum="100000.00" />
+                        </h:inputText></td> 
+                    </tr>
+                    <tr>
+                      <td><b>Quantity</b></td>
+                      <td><h:inputText id="integer" value="#{administratorBean.quantity}" style="width: 100%;height: 40px">
+                    <f:validateLongRange minimum="1" maximum="10000" />
+                    </h:inputText></td> 
+                    </tr>
+                    <tr>
+                      <td><b>Markup</b></td>
+                      <td><h:inputText id="markup" value="#{administratorBean.markup}" style="width: 100%;height: 40px">
+                    <f:validateDoubleRange minimum="0.1" maximum="25.0" />
+                    </h:inputText></td> 
+                    </tr>
+                    <tr>
+                      <td><b>Product Code</b></td>
+                      <td><h:selectOneMenu value="#{administratorBean.available}" style="width: 100%;height: 40px">
+                    <f:selectItem itemValue="TRUE" itemLabel="True" />
+                    <f:selectItem itemValue="FALSE" itemLabel="False" />
+                    </h:selectOneMenu></td> 
+                    </tr>
+                    <tr>
+                        <td><b>Description</b></td>
+                      <td><h:inputText id="regex" value="#{administratorBean.description}" style="width: 100%;height: 40px">
+                    <f:validateRegex pattern="[a-zA-Z]{1,25}" />
+                    </h:inputText></td> 
+                    </tr>
+                    
+                  </table>
+
+                 <br/> 
+                      <h:commandButton styleClass="btn btn-default" action="#{administratorBean.addItem()}" value="Add Item"/>
+                      
+                      <h4><b>#{adminBean.message}</b></h4>
+                     
+                    
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

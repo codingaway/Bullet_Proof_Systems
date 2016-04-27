@@ -8,23 +8,23 @@
         <Node id="user/editsuccess.xhtml" x="372" y="13" zoom="true"/>
         <Node id="templates/sidenav.xhtml" x="650" y="600" zoom="true"/>
         <Node id="error.xhtml" x="400" y="750" zoom="true"/>
-        <Node id="user/editerror.xhtml" x="686" y="10" zoom="true"/>
         <Node id="templates/mainnav.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="user/editerror.xhtml" x="686" y="10" zoom="true"/>
         <Node id="shop/searchresults.xhtml" x="650" y="900" zoom="true"/>
         <Node id="shop/item.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="shop/checkout.xhtml" x="800" y="514" zoom="true"/>
         <Node id="user/allusers.xhtml" x="1150" y="150" zoom="true"/>
-        <Node id="shop/checkout.xhtml" x="900" y="300" zoom="true"/>
-        <Node id="shop/catalog.xhtml" x="313" y="391" zoom="true"/>
         <Node id="shop/catgory.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="shop/catalog.xhtml" x="313" y="391" zoom="true"/>
         <Node id="templates/header.xhtml" x="150" y="750" zoom="true"/>
         <Node id="login.xhtml" x="150" y="300" zoom="true"/>
-        <Node id="shop/cart.xhtml" x="650" y="300" zoom="true"/>
-        <Node id="templates/common.xhtml" x="526" y="240" zoom="true"/>
+        <Node id="shop/cart.xhtml" x="861" y="407" zoom="true"/>
         <Node id="user/profile.xhtml" x="918" y="155" zoom="true"/>
+        <Node id="templates/common.xhtml" x="526" y="240" zoom="true"/>
         <Node id="admin/manageshop.xhtml" x="650" y="750" zoom="true"/>
         <Node id="user/editprofile.xhtml" x="533" y="132" zoom="true"/>
         <Node id="shop/search.xhtml" x="1447" y="362" zoom="true"/>
-        <Node id="templates/footer.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="templates/footer.xhtml" x="404" y="471" zoom="true"/>
         <Node id="index.xhtml" x="1292" y="460" zoom="true"/>
         <Node id="shop/confirmation.xhtml" x="249" y="542" zoom="true"/>
     </Scope>
