@@ -33,7 +33,11 @@
         <navigation-case>
             <from-outcome>admin-dash</from-outcome>
             <to-view-id>/admin/dashboard.xhtml</to-view-id>
-        </navigation-case>     
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>404</from-outcome>
+            <to-view-id>/404.xhtml</to-view-id>
+        </navigation-case>      
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/user/profile.xhtml</from-view-id>

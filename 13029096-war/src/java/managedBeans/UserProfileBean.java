@@ -9,7 +9,6 @@ import entity.Customer;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import session.CustomerFacade;
@@ -33,68 +32,65 @@ public class UserProfileBean implements Serializable {
     @EJB
     private Gp14messageFacade mf;
     
-    @ManagedProperty(value = "#{param.custId}")
-    private Integer custId;
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     /**
      * Creates a new instance of ViewProfileBean
      */
     public UserProfileBean() {
+        System.err.println("Calling");
     }
     
-    public Customer getCutomerDetails()
+    public String showUserProfile()
     {
         Integer profileId = null;
-        if(custId == null) // view request without parameters -> Viewing own profile
-        {
-            String userName  = FacesContext.getCurrentInstance()
+        String userName  = FacesContext.getCurrentInstance()
                     .getExternalContext().getRemoteUser();
-            if(userName != null)
+        if(userName != null)
+        {
+            profileId = uf.getCustomerIdByUsername(userName);
+        }
+        
+        if(profileId != null)
+        {
+            this.customer = cf.getCustomerById(profileId);
+            return "profile";
+        }
+        else
+            return "404";
+    }
+    
+    public String getMessage()
+    {
+        Integer profileId = null;
+        if(customer != null) // view request without parameters -> Viewing own profile
+        {
+            profileId = customer.getCustomerId();
+            if(profileId != null)
             {
-                profileId = uf.getCustomerIdByUsername(userName);
+                return mf.getMessageById(profileId);
             }
         }
-        else
-            profileId = custId;
-        
-        if(profileId != null)
-        {
-            Customer customer = cf.getCustomerById(profileId);
-            return customer;
-        }
-        else
-            return null;
-    }
-    
-    public String getCutomerMessage()
-    {
-        Integer profileId = null;
-        if(custId == null) // view request without parameters -> Viewing own profile
-        {
-             profileId = getLoggedInUserId();
-        }
-        else
-            profileId = custId;
-        
-        if(profileId != null)
-        {
-            return mf.getMessageById(profileId);
-        }
-        else
-            return null;
+        return null;
     }
     
     public boolean isOwnProfile()
     {
-       return (custId == null);
+       return (this.customer != null && this.customer.getCustomerId().equals(this.getLoggedInUserId()));
     }
     
-        public Integer getCustId() {
-        return custId;
-    }
-
-    public void setCustId(Integer custId) {
-        this.custId = custId;
+    public Integer getCustId() {
+        if(customer != null)
+            return this.customer.getCustomerId();
+        return null;
     }
     
     public Integer getLoggedInUserId()
@@ -109,4 +105,75 @@ public class UserProfileBean implements Serializable {
         return userId;
     }
     
+    public String getProfileById(Integer profileId)
+    {
+        if(profileId != null)
+        {
+            this.customer = cf.getCustomerById(profileId);
+            return "profile";
+        }
+        
+        return "404";
+    }
+    
+    public String getCustName()
+    {
+        if(customer != null)
+            return this.customer.getName();
+        return null;
+    }
+    
+    public String getName()
+    {
+        if(customer != null)
+            return this.customer.getName();
+        return null;
+    }
+    
+    public String getEmail()
+    {
+        if(customer != null)
+            return this.customer.getEmail();
+        return null;
+    }
+    
+    public String getPhone()
+    {
+        if(customer != null)
+            return this.customer.getPhone();
+        return null;
+    }
+    
+    public String getAddress1()
+    {
+        if(customer != null)
+            return this.customer.getAddressline1();
+        return null;
+    }
+    
+    public String getAddress2()
+    {
+        if(customer != null)
+            return this.customer.getAddressline1();
+        return null;
+    }
+    
+     public String getState()
+    {
+        if(customer != null)
+            return this.customer.getState();
+        return null;
+    }
+     
+    public String getCity()
+    {
+        if(customer != null)
+            return this.customer.getCity();
+        return null;
+    }
+    
+    public boolean isCustomerExist()
+    {
+        return this.customer != null;
+    }
 }

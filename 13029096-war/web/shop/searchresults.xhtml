@@ -50,10 +50,11 @@
                             <div class="panel panel-info">
                                
                                 <div class="panel-body">
-                                                 
-                                    <h:link  value="#{c1.name}" outcome="profile" includeViewParams="true">
-                                        <f:param name="custId" value="#{c1.customerId}" />
-                                    </h:link>
+
+                                    <h:commandLink  value="#{c1.name}" 
+                                                     action="#{userProfileBean.getProfileById(c1.customerId)}">
+                                    </h:commandLink>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -89,9 +90,9 @@
                             <div class="panel panel-info">
                                  <div class="panel-body">
                                                  
-                                    <h:link  value="#{searchBackingBean.getCustomer().name}" outcome="profile" includeViewParams="true">
-                                        <f:param name="custId" value="#{searchBackingBean.getCustomer().customerId}" />
-                                    </h:link>
+                                     <h:commandLink  value="#{searchBackingBean.getCustomer().name}" 
+                                                     action="#{userProfileBean.getProfileById(searchBackingBean.customer.customerId)}">
+                                    </h:commandLink>
                                 </div>
                             </div>
                     </div>

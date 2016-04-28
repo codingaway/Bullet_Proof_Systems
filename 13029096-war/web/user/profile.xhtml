@@ -4,11 +4,6 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
-    <f:metadata>
-        <f:viewParam name="custId" value="#{userProfileBean.custId}"/>
-    </f:metadata>
-
     <ui:composition template="../templates/common.xhtml">
         <ui:define name="title">
             Profile page
@@ -18,27 +13,28 @@
             <h:commandButton styleClass="btn btn-info" value="Edit profile" action="editprofile" rendered="#{userProfileBean.ownProfile}" />
         </ui:define>
         <ui:define name="main_content">
+            <h:panelGroup id="userProfile" rendered="#{userProfileBean.customerExist}" >
+                          <div class="row">
+                    <h3><h:outputText value="#{userProfileBean.name}" /></h3>
+                    <p>Customer ID#  <h:outputText value="#{userProfileBean.custId}" /> </p>
+                    <h5>Address :</h5>
+                    <p><h:outputText value="#{userProfileBean.address1}" /> </p>
+                    <p><h:outputText value="#{userProfileBean.address2}" /> </p>
+                    <p><h:outputText value="#{userProfileBean.city}, #{' '} #{userProfileBean.state}" /> </p>
+                    <p><span class="glyphicon glyphicon-phone"></span>#{'   '}<h:outputText value="#{userProfileBean.phone}" /> </p>
+                    <p>
+                        <span class="glyphicon glyphicon-envelope"></span> #{'   '}
+                        <a href="mailto:#{userProfileBean.email}" >#{userProfileBean.email}</a>
+                    </p>
+                    <p>
+                        Message:
+                    </p>
+                    <p>
+                        <h:outputText value="#{userProfileBean.message}" /> 
+                    </p>
 
-            <div class="row">
-                <h3><h:outputText value="#{userProfileBean.cutomerDetails.name}" /></h3>
-                <p>Customer ID#  <h:outputText value="#{userProfileBean.cutomerDetails.customerId}" /> </p>
-                <h5>Address :</h5>
-                <p><h:outputText value="#{userProfileBean.cutomerDetails.addressline1}" /> </p>
-                <p><h:outputText value="#{userProfileBean.cutomerDetails.addressline2}" /> </p>
-                <p><h:outputText value="#{userProfileBean.cutomerDetails.city}, #{' '} #{userProfileBean.cutomerDetails.state}" /> </p>
-                <p><span class="glyphicon glyphicon-phone"></span>#{'   '}<h:outputText value="#{userProfileBean.cutomerDetails.phone}" /> </p>
-                <p>
-                    <span class="glyphicon glyphicon-envelope"></span> #{'   '}
-                    <a href="mailto:#{userProfileBean.cutomerDetails.email}" >#{userProfileBean.cutomerDetails.email}</a>
-                </p>
-                <p>
-                    Message:
-                </p>
-                <p>
-                    <h:outputText value="#{userProfileBean.cutomerMessage}" /> 
-                </p>
-                              
-            </div>
+                </div>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 </html>
