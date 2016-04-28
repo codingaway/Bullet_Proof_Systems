@@ -12,7 +12,8 @@
         <ui:define name="sidebar">
             <p class="lead">Shop Name</p>
             <h3>Category</h3>
-            <h:commandButton styleClass="btn btn-default" value="Delete Item" action="dashboard.xhtml" />
+            <h:commandButton styleClass="btn btn-default" value="Delete Item" action="dashboard.xhtml" /><br/>
+            <h:commandButton styleClass="btn btn-default" value="Edit Item" action="editItem.xhtml" />
         </ui:define>
         <ui:define name="main_content">
             
@@ -23,7 +24,6 @@
                     <tr>
                         <td><b>Manufacturer</b></td>
                         <td><h:selectOneMenu value="#{administratorBean.manufacturer}" style="width: 100%;height: 40px" converter="javax.faces.Integer" >
-                    <!--<f:converter converterId="converter" />-->
                     <f:selectItem itemLabel="Select"/>
                     <f:selectItems value="#{administratorBean.manufacturers}" var="m"
                                    itemLabel="#{m.name}" itemValue="#{m.manufacturerId}" />

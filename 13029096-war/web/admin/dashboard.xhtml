@@ -12,7 +12,8 @@
         <ui:define name="sidebar">
             <p class="lead">Shop Name</p>
             <h3>Admin Options</h3>
-            <h:commandButton styleClass="btn btn-default" value="Add Item" action="manageshop.xhtml" />
+            <h:commandButton styleClass="btn btn-default" value="Add Item" action="manageshop.xhtml" /><br/>
+            <h:commandButton styleClass="btn btn-default" value="Update Quantity" action="editItem.xhtml" />
         </ui:define>
         <ui:define name="main_content">
             <div class="row">
@@ -33,6 +34,9 @@
                                 <div class="panel-footer">
                                     <h:commandButton styleClass="btn btn-default" value="Remove Item" action="#{administratorBean.removeItem(p.productId)}"/>
                                     <span class="pull-right">In stock: #{p.quantityOnHand}</span>
+                                    
+                                    
+                                                                      
                                 </div>
                             </div>
                         </div>

@@ -77,8 +77,10 @@ public class CreatePO implements CreatePOLocal {
         
             po.setOrderNum(orderNum);
                   
+//            query = em.createNamedQuery("Customer.findByCustomerId")
+//                    .setParameter("customerId", 863);
             query = em.createNamedQuery("Customer.findByCustomerId")
-                    .setParameter("customerId", custId);
+                                .setParameter("customerId", custId);
             
             customer = (Customer)query.getSingleResult();
             

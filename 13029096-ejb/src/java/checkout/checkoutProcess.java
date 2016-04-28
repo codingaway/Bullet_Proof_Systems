@@ -52,7 +52,6 @@ public class checkoutProcess implements checkoutProcessLocal, Serializable{
     @Override
     public String checkQty()
     {
-
         size = shoppingCart.getProducts().size();
         int i=0;
         while(i<size)
@@ -65,18 +64,23 @@ public class checkoutProcess implements checkoutProcessLocal, Serializable{
             if(qty < shoppingCart.getProducts().get(i).getProduct_quantity())
                 return shoppingCart.getProducts().get(i).getProduct().getDescription();
             
-            else
+            i++;
+        }
+            
+         i=0;
+         while(i<size)
             {
                 query = em.createNamedQuery("Product.decreaseQty")
                         .setParameter("qty",shoppingCart.getProducts().get(i).getProduct_quantity())
                         .setParameter("productID",shoppingCart.getProducts().get(i).getProduct().getProductId());
                 
                 query.executeUpdate();
+                i++;
             }
             
-            i++;
             
-        }
+            
+        
         return "confirmation";
     }
     

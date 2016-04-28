@@ -49,16 +49,21 @@ public class CheckoutBean {
     
      public String logProcess()
     {
-        String result = process.checkQty();
-        
-        if(!result.equals("confirmation"))
+        if(shoppingCart.getProducts().size()>0)
         {
+            String result = process.checkQty();
+        
+            if(!result.equals("confirmation"))
+            {
             setMessage("That quantity is no longer available for "+result+"."
                         +"Please select another quantity.");
-            result = "cart";
-        }
+             result = "cart";
+            }
         
         return result;
+        }
+        
+        return "catalog";
     }
      
      public void calculateCost(){

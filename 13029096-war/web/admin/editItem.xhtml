@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templates/common.xhtml">
+        <ui:define name="title">
+            Admin - Managed Shop
+        </ui:define>
+        <ui:define name="sidebar">
+            <p class="lead">Shop Name</p>
+            <h3>Admin Options</h3>
+            <h:commandButton styleClass="btn btn-default" value="Add Item" action="manageshop.xhtml" /><br/>
+                <h:commandButton styleClass="btn btn-default" value="Remove Item" action="dashboard.xhtml" />
+            
+        </ui:define>
+        <ui:define name="main_content">
+            <div class="row">
+                <h3>Product List</h3>
+                <table border="1" style="width:50%">
+                    <tr>
+                        <td><b>Product</b></td>
+                        <td><h:selectOneMenu value="#{administratorBean.id}" style="width: 100%;height: 40px" converter="javax.faces.Integer" >
+                    <f:selectItem itemLabel="Select"/>
+                    <f:selectItems value="#{catelog.products}" var="m"
+                                   itemLabel="#{m.description}" itemValue="#{m.productId}" />
+                                 </h:selectOneMenu><br/></td> 
+                    </tr>
+                    <tr>
+                      <td><b>New Quantity</b></td>
+                      <td><h:inputText id="cost" value="#{administratorBean.quantity}" style="width: 100%;height: 40px">
+                        <f:validateLongRange minimum="1" maximum="1000000" />
+                        </h:inputText></td> 
+                    </tr>
+                
+                </table>
+                <h:commandButton styleClass="btn btn-default" value="Update Quantity" action="#{administratorBean.setQty()}" />
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

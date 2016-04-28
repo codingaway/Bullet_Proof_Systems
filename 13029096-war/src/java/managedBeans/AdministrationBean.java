@@ -9,6 +9,7 @@ import entity.Manufacturer;
 import entity.ProductCode;
 import entity.Product;
 import admin.adminBeanLocal;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 import javax.ejb.EJB;
@@ -23,6 +24,7 @@ import session.ProductCodeFacade;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
+import session.ProductFacade;
 
 
 /**
@@ -32,10 +34,15 @@ import javax.faces.convert.FacesConverter;
 @Named(value = "administratorBean")
 @RequestScoped
 //@FacesConverter("converter")
-public class AdministrationBean {//implements Converter{
+public class AdministrationBean {
+
+    @EJB
+    private ProductFacade pf;
 
     @EJB
     private ProductCodeFacade pcf;
+    
+    
 
     @EJB
     private ManufacturerFacade mf;
@@ -43,8 +50,10 @@ public class AdministrationBean {//implements Converter{
     @EJB
     private adminBeanLocal adminBean;
     
-    private String message;
     
+   
+    private String path;
+    private String message;
     private Integer manufacturer;
     private String code;
     private String description;
@@ -53,6 +62,9 @@ public class AdministrationBean {//implements Converter{
     private BigDecimal purchaseCost;
     private BigDecimal markup;
     private Product po;
+    private ProcessBuilder pb;
+    
+    private int id; 
     
     public AdministrationBean() {
         message = "Please fill in details for new Item.";
@@ -135,34 +147,6 @@ public class AdministrationBean {//implements Converter{
         this.markup = markup;
     }
 
-   /* 
-    public Manufacturer getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
-    public ProductCode getCode() {
-        return code;
-    }
-
-    public void setCode(ProductCode code) {
-        this.code = code;
-    }*/
-    
-    /*@Override
-    public String getAsString(FacesContext context, UIComponent component, Object value) {
-        return value.toString();
-    }
-
-    @Override
-    public Object getAsObject(FacesContext context, UIComponent component, String value)throws ConverterException {
-       return adminBean.getCode(value);
-    }*/
-
-
     public Integer getManufacturer() {
         return manufacturer;
     }
@@ -180,6 +164,41 @@ public class AdministrationBean {//implements Converter{
     }
 
     
+     public void createLog()
+     {
+         adminBean.createLogFile();
+     }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath()  {
+        this.path = adminBean.getPath();  
+    }
+    
+    public void openLog()throws IOException
+    {
+        pb = new ProcessBuilder("Notepad.exe", adminBean.getPath());
+        pb.start();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+     public void setQty(){
+         adminBean.setQty(id, quantity);
+     }
+     
+     public int getProductQty()
+     {
+         return pf.find(id).getQuantityOnHand();
+     }
      
     
 }

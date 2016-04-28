@@ -12,6 +12,14 @@
         <ui:define name="sidebar">
             <p class="lead">Shop Name</p>
             <h3>Category</h3>
+            <div class="list-group">
+                <h:dataTable value="#{catelog.productCodeList}"
+                             var="p" styleClass="list-group" >
+                    <h:column>
+                        <a href="#" class="list-group-item">#{p.description}</a>           
+                    </h:column>
+                </h:dataTable>
+            </div>
         </ui:define>
         <ui:define name="main_content">
             <div class="row">

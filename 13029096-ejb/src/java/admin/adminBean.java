@@ -5,14 +5,17 @@
  */
 package admin;
 
+import ShoppingCartEjb.ShoppingCartLocal;
 import entity.Manufacturer;
 import entity.Product;
 import entity.ProductCode;
 import java.util.*;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import log.LoggingLocal;
 
 /**
  *
@@ -21,6 +24,9 @@ import javax.persistence.Query;
 @Stateless
 public class adminBean implements adminBeanLocal {
 
+    @EJB
+    private LoggingLocal logging;
+
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
 
@@ -28,9 +34,12 @@ public class adminBean implements adminBeanLocal {
         em.persist(object);
     }
     
+    
+    private String path;
     private Query query;
     private Manufacturer manufacturer;
     private ProductCode code;
+    private boolean created = false;
 
     @Override
     public void addItem(Product po, String prodcode, int id)
@@ -53,6 +62,7 @@ public class adminBean implements adminBeanLocal {
       System.out.println(po.toString());
       
       em.persist(po);
+      logging.sendMessageToQueue("Added Item:Product ID ="+po.getProductId()+":Description = "+po.getDescription()+":Qty = "+po.getQuantityOnHand());
     }
     
     @Override
@@ -61,7 +71,45 @@ public class adminBean implements adminBeanLocal {
        query = em.createNamedQuery("Product.findByProductId")
                .setParameter("productId", id);
        em.remove(query.getSingleResult());
+       logging.sendMessageToQueue("Removed Item: "+query.getSingleResult().toString());
     }
     
+    @Override 
+    public void setQty(final int id, final int qty)
+    {
+        
+        query = em.createNamedQuery("Product.setQty")
+                        .setParameter("qty",qty)
+                        .setParameter("productID",id);
+                
+                query.executeUpdate();
+    }
     
+    @Override
+    public void setFilePath(String path){
+        this.path = path;
+    }
+
+    @Override
+    public String getPath() {
+        return path;
+    }
+    
+    @Override
+    public void createLogFile()
+    {
+        if(!created)
+        {
+        logging.sendMessageToQueue("");
+        created=true;
+        }
+    }
+
+    public boolean isCreated() {
+        return created;
+    }
+
+    public void setCreated(boolean created) {
+        this.created = created;
+    }   
 }

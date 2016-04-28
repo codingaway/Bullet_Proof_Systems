@@ -51,6 +51,7 @@ public class PO_Bean {
         if(custId != null)
         {
             pos = createPO.createPO(custId);
+            //pos = createPO.createPO();
         }
     }
 

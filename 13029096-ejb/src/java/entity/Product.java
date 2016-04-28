@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description"),
     @NamedQuery(name = "Product.findTotalQuantity", query = "SELECT p.quantityOnHand FROM Product p WHERE p.productId = :productID"),
     @NamedQuery(name = "Product.decreaseQty", query = "UPDATE Product p SET p.quantityOnHand = p.quantityOnHand - :qty WHERE p.productId = :productID"),
-     @NamedQuery(name ="Product.findByProductCode", query = "SELECT p FROM Product p WHERE p.productCode.prodCode = :productCode"),
+    @NamedQuery(name = "Product.setQty", query = "UPDATE Product p SET p.quantityOnHand = :qty WHERE p.productId = :productID"),
+    @NamedQuery(name ="Product.findByProductCode", query = "SELECT p FROM Product p WHERE p.productCode.prodCode = :productCode"),
     @NamedQuery(name = "Product.findMaxID", query = "SELECT MAX(p.productId) FROM Product p")})
 public class Product implements Serializable {
 
@@ -72,6 +73,8 @@ public class Product implements Serializable {
     private Manufacturer manufacturerId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private List<PurchaseOrder> purchaseOrderList;
+    
+    
 
     public Product() {
     }
@@ -177,5 +180,8 @@ public class Product implements Serializable {
     public String toString() {
         return "entity.Product[ productId=" + productId + " ]";
     }
+
+
+    
     
 }

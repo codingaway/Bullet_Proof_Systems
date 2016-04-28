@@ -5,10 +5,12 @@
  */
 package mdbs;
 
+import admin.adminBeanLocal;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.ActivationConfigProperty;
+import javax.ejb.EJB;
 import javax.ejb.MessageDriven;
 import javax.jms.JMSDestinationDefinition;
 import javax.jms.JMSException;
@@ -26,12 +28,17 @@ import javax.jms.TextMessage;
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
 })
 public class POMessageBean implements MessageListener {
+
+    @EJB
+    private adminBeanLocal adminBean;
     
-    File logFile;
-    FileWriter wr;
+    
+    
+    private File logFile;
+    private FileWriter wr;
     
     public POMessageBean() throws FileNotFoundException, IOException {
-        logFile = new File("logFile.txt");
+        logFile = new File("team8_logFile.txt");
  
         
     }
@@ -44,15 +51,17 @@ public class POMessageBean implements MessageListener {
             try {
                 if (!logFile.exists()) 
                 {
-                    logFile.createNewFile();
-                    System.out.println(logFile.getPath());
-                    System.out.println(logFile.getAbsolutePath());
+                    logFile.createNewFile();    
                 }
+                adminBean.setFilePath(logFile.getAbsolutePath());
                 
-                wr = new FileWriter(logFile,true);
-                wr.write(msg.getText());
-                wr.write(System.lineSeparator());
-                wr.close();
+                if(!msg.getText().equals(""))
+                {
+                    wr = new FileWriter(logFile,true);
+                    wr.write(msg.getText());
+                    wr.write(System.lineSeparator());
+                    wr.close();
+                }
                 
                 System.out.println(msg.getText());
             } catch (Exception ex) {
@@ -65,5 +74,8 @@ public class POMessageBean implements MessageListener {
             }
         }
     }
+
+    
+    
     
 }

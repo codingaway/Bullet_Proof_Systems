@@ -21,4 +21,8 @@ public interface adminBeanLocal {
     
     public void addItem(Product po, String code, int id);
     public void removeItem(final int po);
+    public void setQty(final int id, final int qty);
+    public void setFilePath(String path);
+    public String getPath();
+    public void createLogFile();
 }
