@@ -10,7 +10,13 @@
         </ui:define>
         <ui:define name="sidebar">
             <h2>Profile summery</h2>
-            <h:commandButton styleClass="btn btn-info" value="Edit profile" action="editprofile" rendered="#{userProfileBean.ownProfile}" />
+            <h:panelGroup rendered="#{userProfileBean.ownProfile}" >
+                <h:commandLink styleClass="btn btn-info" value="Edit profile"
+                               action="editprofile">
+                    
+                </h:commandLink>
+           
+            </h:panelGroup>
         </ui:define>
         <ui:define name="main_content">
             <h:panelGroup id="userProfile" rendered="#{userProfileBean.customerExist}" >

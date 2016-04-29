@@ -9,6 +9,7 @@ import entity.Customer;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import session.CustomerFacade;
@@ -21,7 +22,7 @@ import session.Gp14userFacade;
  * @author Abdul Halim <13029096@studentmail.ul.ie>
  */
 @Named(value = "userProfileBean")
-@RequestScoped
+@SessionScoped
 public class UserProfileBean implements Serializable {
     
     @EJB
@@ -39,7 +40,7 @@ public class UserProfileBean implements Serializable {
      * Creates a new instance of ViewProfileBean
      */
     public UserProfileBean() {
-        System.err.println("Calling");
+        
     }
     
     /**
@@ -237,4 +238,11 @@ public class UserProfileBean implements Serializable {
     {
         return this.customer != null;
     }
+    
+    public String editProfile()
+    {
+        System.err.println("Edit profile button called");
+        return "editprofile";
+    }
+    
 }

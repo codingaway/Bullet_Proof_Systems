@@ -263,7 +263,6 @@ public class AdministrationBean {
      {
          adminBean.createLogFile();
          this.path = adminBean.getPath();
-         System.out.print("Path3:"+path);
      }
 
      /**
@@ -278,8 +277,7 @@ public class AdministrationBean {
      * set logfile path
      */
     public void setPath()  {
-        this.path = adminBean.getPath(); 
-        System.out.print("Path2:"+path);
+        this.path = adminBean.getPath();
     }
     
     /**
@@ -291,14 +289,11 @@ public class AdministrationBean {
         logFile.clear();
         file = new File(adminBean.getPath());
         in = new Scanner(file);
-        
-        System.out.println("Log");
-        
+    
         while(in.hasNext())
         {
             line = "";
             line += in.nextLine();
-            System.out.println(line);
             logFile.add(line);
         }
     }

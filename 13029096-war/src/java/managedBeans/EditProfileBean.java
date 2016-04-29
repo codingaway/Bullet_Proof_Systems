@@ -36,9 +36,6 @@ public class EditProfileBean implements Serializable {
     private Customer customer; 
     private String message;
     
-    @ManagedProperty(value = "userProfileBean")
-    private UserProfileBean upb;
-    
     @EJB
     private CustomerFacade cf;
     
@@ -56,6 +53,7 @@ public class EditProfileBean implements Serializable {
         
         //Gp14message custMessae = msgf.find(userId);
         //this.message = this.getCutomerMessage();
+        System.err.println("Edit profile cosnt called");
     }
     
     
