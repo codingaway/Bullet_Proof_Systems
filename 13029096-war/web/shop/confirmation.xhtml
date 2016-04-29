@@ -14,15 +14,10 @@
             <h3>Confirmation</h3>
         </ui:define>
         <ui:define name="main_content">
-            <h4>Your order has been received.<br/>
-                Delivery is expected within two weeks.<br/>
-                    #{pO_Bean.createPO()}
-            </h4>
             
             <h5><b>Purchase Order</b></h5><br/>
-            
-            <h:dataTable styleClass="table" value='#{pO_Bean.pos}' var='po'
-                        >
+             #{pO_Bean.createPO()}
+            <h:dataTable styleClass="table" value='#{pO_Bean.pos}' var='po'>
                 <h:column>
                     <f:facet name='header' >Product ID</f:facet>
                         #{po.productId.productId}
@@ -59,6 +54,11 @@
             #{checkoutBean.calculateCost()}
             <h6><b>Total Cost : #{checkoutBean.totalCost}</b></h6>
             #{checkoutBean.clearList()}
+            
+            <h4>Your order has been received.<br/>
+                Delivery is expected within two weeks.<br/>
+                   
+            </h4>
             
         </ui:define>
     </ui:composition>
