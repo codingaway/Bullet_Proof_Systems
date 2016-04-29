@@ -10,6 +10,8 @@ import javax.ejb.Local;
 /**
  *
  * @author Anon
+ * This Interface is designed to provide appropriate methods 
+ * for MessageHandle EJB
  */
 @Local
 public interface MessageHandlerLocal {

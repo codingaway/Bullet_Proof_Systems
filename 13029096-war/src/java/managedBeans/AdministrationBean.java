@@ -179,7 +179,7 @@ public class AdministrationBean {
     
     public void openLog()throws IOException
     {
-        pb = new ProcessBuilder("Notepad.exe", adminBean.getPath());
+        pb = new ProcessBuilder("gedit", adminBean.getPath());
         pb.start();
     }
 

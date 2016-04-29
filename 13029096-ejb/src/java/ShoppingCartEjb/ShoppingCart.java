@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Vilma
+ * @author Benjamin
  */
 
 @Stateless
@@ -66,6 +66,10 @@ public class ShoppingCart implements ShoppingCartLocal {
           }
        }  
     }
+    /**
+     * 
+     * @param object 
+     */
     public void persist(Object object) {
         em.persist(object);
     }
