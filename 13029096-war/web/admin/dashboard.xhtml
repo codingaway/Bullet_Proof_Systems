@@ -12,9 +12,12 @@
         <ui:define name="sidebar">
             <p class="lead">Shop Name</p>
             <h3>Admin Options</h3>
-            <h:commandButton styleClass="btn btn-default" value="Add Item" action="manageshop.xhtml" /><br/>
-            <h:commandButton styleClass="btn btn-default" value="Update Quantity" action="editItem.xhtml" /><br/>
-            <h:commandButton styleClass="btn btn-default" value="Open Log" action="logfile.xhtml"/>
+            
+            <ul class="nav nav-sidebar">
+                <li><h:commandLink value="Delete Item" action="dashboard.xhtml" /></li>
+                <li><h:commandLink value="Edit item" action="editItem.xhtml"/></li>
+                <li><h:commandLink  value="Open Log" action="logfile.xhtml"/></li>
+            </ul>
             
         </ui:define>
         <ui:define name="main_content">

@@ -12,10 +12,11 @@
         <ui:define name="sidebar">
             <p class="lead">Shop Name</p>
             <h3>Admin Options</h3>
-            <h:commandButton styleClass="btn btn-default" value="Add Item" action="manageshop.xhtml" /><br/>
-                <h:commandButton styleClass="btn btn-default" value="Remove Item" action="dashboard.xhtml" /><br/>
-                <h:commandButton styleClass="btn btn-default" value="Open Log" action="logfile.xhtml"/>
-            
+            <ul class="nav nav-sidebar">
+                <li><h:commandLink  value="Add Item" action="manageshop.xhtml" /></li>
+                <li><h:commandLink  value="Delete Item" action="dashboard.xhtml" /></li>
+                <li><h:commandLink  value="Open Log" action="logfile.xhtml"/></li>
+            </ul>
         </ui:define>
         <ui:define name="main_content">
             <div class="row">
@@ -24,21 +25,21 @@
                     <tr>
                         <td><b>Product</b></td>
                         <td><h:selectOneMenu value="#{administratorBean.id}" style="width: 100%;height: 40px" converter="javax.faces.Integer" >
-                    <f:selectItem itemLabel="Select" itemValue="0"/>
-                    <f:selectItems value="#{catelog.products}" var="m"
-                                   itemLabel="#{m.description}" itemValue="#{m.productId}" />
-                                 </h:selectOneMenu><br/></td> 
+                                <f:selectItem itemLabel="Select" itemValue="0"/>
+                                <f:selectItems value="#{catelog.products}" var="m"
+                                               itemLabel="#{m.description}" itemValue="#{m.productId}" />
+                            </h:selectOneMenu><br/></td> 
                     </tr>
                     <tr>
-                      <td><b>New Quantity</b></td>
-                      <td><h:inputText id="cost" value="#{administratorBean.quantity}" style="width: 100%;height: 40px">
-                        <f:validateLongRange minimum="1" maximum="1000000" />
-                        </h:inputText></td> 
+                        <td><b>New Quantity</b></td>
+                        <td><h:inputText id="cost" value="#{administratorBean.quantity}" style="width: 100%;height: 40px">
+                                <f:validateLongRange minimum="1" maximum="1000000" />
+                            </h:inputText></td> 
                     </tr>
-                
+
                 </table>
                 <h:commandButton styleClass="btn btn-default" value="Update Quantity" action="#{administratorBean.setQty()}"/>
-                
+
                 <h6><b><font color="red">#{administratorBean.adminMessage}</font></b></h6>
             </div>
         </ui:define>
