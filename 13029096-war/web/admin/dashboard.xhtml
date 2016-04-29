@@ -13,10 +13,14 @@
             <p class="lead">Shop Name</p>
             <h3>Admin Options</h3>
             <h:commandButton styleClass="btn btn-default" value="Add Item" action="manageshop.xhtml" /><br/>
-            <h:commandButton styleClass="btn btn-default" value="Update Quantity" action="editItem.xhtml" />
-            <br/><h:commandButton styleClass="btn btn-default" value="Open Log" action="#{administratorBean.openLog()}"/>
+            <h:commandButton styleClass="btn btn-default" value="Update Quantity" action="editItem.xhtml" /><br/>
+            <h:commandButton styleClass="btn btn-default" value="Open Log" action="logfile.xhtml"/>
+            
         </ui:define>
         <ui:define name="main_content">
+            #{administratorBean.setPath()}
+            <h8><b>Log File:</b>#{administratorBean.path}</h8>
+            <h6><b><font color="red">#{administratorBean.adminMessage}</font></b></h6>
             <div class="row">
                 <h3>Product List</h3>
                 <h:dataTable value="#{catelog.products}"

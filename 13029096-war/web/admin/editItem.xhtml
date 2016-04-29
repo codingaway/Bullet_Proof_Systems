@@ -13,7 +13,8 @@
             <p class="lead">Shop Name</p>
             <h3>Admin Options</h3>
             <h:commandButton styleClass="btn btn-default" value="Add Item" action="manageshop.xhtml" /><br/>
-                <h:commandButton styleClass="btn btn-default" value="Remove Item" action="dashboard.xhtml" />
+                <h:commandButton styleClass="btn btn-default" value="Remove Item" action="dashboard.xhtml" /><br/>
+                <h:commandButton styleClass="btn btn-default" value="Open Log" action="logfile.xhtml"/>
             
         </ui:define>
         <ui:define name="main_content">
@@ -23,7 +24,7 @@
                     <tr>
                         <td><b>Product</b></td>
                         <td><h:selectOneMenu value="#{administratorBean.id}" style="width: 100%;height: 40px" converter="javax.faces.Integer" >
-                    <f:selectItem itemLabel="Select"/>
+                    <f:selectItem itemLabel="Select" itemValue="0"/>
                     <f:selectItems value="#{catelog.products}" var="m"
                                    itemLabel="#{m.description}" itemValue="#{m.productId}" />
                                  </h:selectOneMenu><br/></td> 
@@ -36,7 +37,9 @@
                     </tr>
                 
                 </table>
-                <h:commandButton styleClass="btn btn-default" value="Update Quantity" action="#{administratorBean.setQty()}" />
+                <h:commandButton styleClass="btn btn-default" value="Update Quantity" action="#{administratorBean.setQty()}"/>
+                
+                <h6><b><font color="red">#{administratorBean.adminMessage}</font></b></h6>
             </div>
         </ui:define>
     </ui:composition>

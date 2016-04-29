@@ -6,10 +6,6 @@
 package checkout;
 
 import ShoppingCartEjb.ShoppingCartLocal;
-import admin.adminBean;
-import admin.adminBeanLocal;
-import static com.oracle.jrockit.jfr.ContentType.Timestamp;
-import entity.Customer;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
@@ -29,13 +25,18 @@ public class checkoutProcess implements checkoutProcessLocal, Serializable{
 
     
 
-    
+    /**
+     * Injected Beans
+     */
     @EJB
     private LoggingLocal logging;
     
     @EJB
     private ShoppingCartLocal shoppingCart;
 
+    /**
+     * Entity manager for persistence
+     */
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
     
@@ -43,12 +44,18 @@ public class checkoutProcess implements checkoutProcessLocal, Serializable{
         em.persist(object);
     }
     
-    //Customer customerID;
     private String message;
     private Date currentTime;
     private int qty, size;
     private Query query;
     
+    /**
+     * Check if required quantity is available for all products
+     * If one fails, return product description string
+     * Else reduce qty from database
+     * Return confirmation page string
+     * @return 
+     */
     @Override
     public String checkQty()
     {
@@ -84,6 +91,9 @@ public class checkoutProcess implements checkoutProcessLocal, Serializable{
         return "confirmation";
     }
     
+    /**
+     * Add cart details to log if cancelled transaction
+     */
     @Override
     public void setCancelLog()
     {
@@ -102,6 +112,10 @@ public class checkoutProcess implements checkoutProcessLocal, Serializable{
         shoppingCart.getProducts().clear();
     }
     
+    /**
+     * Return total cost of cart
+     * @return 
+     */
     @Override
     public BigDecimal getTotalCost()
     {
@@ -118,7 +132,10 @@ public class checkoutProcess implements checkoutProcessLocal, Serializable{
         return cost;
     }
    
-
+/**
+ * Persistence operation
+ * @param object 
+ */
     public void persist1(Object object) {
         em.persist(object);
     }

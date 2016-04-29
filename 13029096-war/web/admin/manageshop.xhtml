@@ -13,7 +13,8 @@
             <p class="lead">Shop Name</p>
             <h3>Category</h3>
             <h:commandButton styleClass="btn btn-default" value="Delete Item" action="dashboard.xhtml" /><br/>
-            <h:commandButton styleClass="btn btn-default" value="Edit Item" action="editItem.xhtml" />
+            <h:commandButton styleClass="btn btn-default" value="Edit Item" action="editItem.xhtml" /><br/>
+            <h:commandButton styleClass="btn btn-default" value="Open Log" action="logfile.xhtml"/>
         </ui:define>
         <ui:define name="main_content">
             
@@ -76,6 +77,7 @@
                       <h:commandButton styleClass="btn btn-default" action="#{administratorBean.addItem()}" value="Add Item"/>
                       
                       <h4><b>#{adminBean.message}</b></h4>
+                      <h6><b><font color="red">#{administratorBean.adminMessage}</font></b></h6>
                      
                     
             </div>

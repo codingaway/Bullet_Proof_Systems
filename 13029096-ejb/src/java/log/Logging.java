@@ -19,17 +19,31 @@ import javax.jms.Queue;
 @Stateless
 public class Logging implements LoggingLocal {
 
+    /**
+     * Resource location for messages
+     */
     @Resource(mappedName = "java:app/LoggingQueue")
     private Queue java_appLoggingQueue;
 
+    /**
+     * Connection factory for messages
+     */
     @Inject
     @JMSConnectionFactory("java:comp/DefaultJMSConnectionFactory")
     private JMSContext context;
 
+    /**
+     * Send message to queue
+     * @param message 
+     */
     @Override
    public void sendMessageToQueue(String message){
        sendJMSMessageToLoggingQueue(message); }
 
+   /**
+    * Send message to log
+    * @param messageData 
+    */
     private void sendJMSMessageToLoggingQueue(String messageData) {
         context.createProducer().send(java_appLoggingQueue, messageData);
     }

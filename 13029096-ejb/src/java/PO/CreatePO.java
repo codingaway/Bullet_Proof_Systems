@@ -13,11 +13,9 @@ import java.util.Date;
 import java.util.*;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.naming.InitialContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.UserTransaction;
 import log.LoggingLocal;
 
 
@@ -28,6 +26,10 @@ import log.LoggingLocal;
 @Stateless
 public class CreatePO implements CreatePOLocal {
 
+    
+    /**
+     * Injected Beans
+     */
     @EJB
     private LoggingLocal logging;
 
@@ -38,6 +40,9 @@ public class CreatePO implements CreatePOLocal {
     
     
 
+    /**
+     * Persistence Manager
+     */
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
     
@@ -45,7 +50,6 @@ public class CreatePO implements CreatePOLocal {
         em.persist(object);
     }
     
-    //Customer customerID;
     private String message;
     private Date currentTime;
     private List<PurchaseOrder> poList;
@@ -54,14 +58,16 @@ public class CreatePO implements CreatePOLocal {
     private BigDecimal shipCost;
     private int size,orderNum;
     private Query query;
-    //UserTransaction transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
     
     
-    
+    /**
+     * create individual PO`s
+     * @param custId
+     * @return 
+     */
     @Override
     public List<PurchaseOrder> createPO(Integer custId)
     {
-        //transaction.begin();
         poList = new ArrayList();
         size = shoppingCart.getProducts().size();
         query = em.createNamedQuery("PurchaseOrder.findMax");
@@ -77,8 +83,6 @@ public class CreatePO implements CreatePOLocal {
         
             po.setOrderNum(orderNum);
                   
-//            query = em.createNamedQuery("Customer.findByCustomerId")
-//                    .setParameter("customerId", 863);
             query = em.createNamedQuery("Customer.findByCustomerId")
                                 .setParameter("customerId", custId);
             
@@ -103,42 +107,82 @@ public class CreatePO implements CreatePOLocal {
         return poList;
     }
 
+    /**
+     * get current time
+     * @return 
+     */
     public Date getCurrentTime() {
         return currentTime;
     }
 
+    /**
+     * set current time
+     * @param currentTime 
+     */
     public void setCurrentTime(Date currentTime) {
         this.currentTime = currentTime;
     }
 
+    /**
+     * get customer 
+     * @return 
+     */
     public Customer getCustomer() {
         return customer;
     }
 
+    /**
+     * set customer
+     * @param customer 
+     */
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
+    /**
+     * get shipping cost
+     * @return 
+     */
     public BigDecimal getShipCost() {
         return shipCost;
     }
 
+    /**
+     * set shipping cost
+     * @param shipCost 
+     */
     public void setShipCost(BigDecimal shipCost) {
         this.shipCost = shipCost;
     }
 
+    /**
+     * get size
+     * @return 
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * set size
+     * @param size 
+     */
     public void setSize(int size) {
         this.size = size;
     }
 
+    /**
+     * get order number
+     * @return 
+     */
     public int getOrderNum() {
         return orderNum;
     }
 
+    /**
+     * set order number
+     * @param orderNum 
+     */
     public void setOrderNum(int orderNum) {
         this.orderNum = orderNum;
     }

@@ -6,9 +6,7 @@
 package admin;
 
 
-import entity.Manufacturer;
 import entity.Product;
-import entity.ProductCode;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -19,8 +17,8 @@ import javax.ejb.Local;
 @Local
 public interface adminBeanLocal {
     
-    public void addItem(Product po, String code, int id);
-    public void removeItem(final int po);
+    public void addItem(Product po, String code, int id,final int adminID);
+    public void removeItem(final int po,final int adminBean);
     public void setQty(final int id, final int qty);
     public void setFilePath(String path);
     public String getPath();

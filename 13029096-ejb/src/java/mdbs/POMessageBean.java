@@ -13,7 +13,6 @@ import javax.ejb.ActivationConfigProperty;
 import javax.ejb.EJB;
 import javax.ejb.MessageDriven;
 import javax.jms.JMSDestinationDefinition;
-import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
@@ -22,38 +21,61 @@ import javax.jms.TextMessage;
  *
  * @author Enda
  */
+
 @JMSDestinationDefinition(name = "java:app/LoggingQueue", interfaceName = "javax.jms.Queue", resourceAdapter = "jmsra", destinationName = "LoggingQueue")
 @MessageDriven(activationConfig = {
     @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "java:app/LoggingQueue"),
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
 })
+
+
 public class POMessageBean implements MessageListener {
 
+    /**
+     * Injected Bean
+     */
     @EJB
     private adminBeanLocal adminBean;
     
-    
-    
     private File logFile;
     private FileWriter wr;
+    private boolean setPath;
     
+    /**
+     * Instantiate file object.
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public POMessageBean() throws FileNotFoundException, IOException {
-        logFile = new File("team8_logFile.txt");
+        logFile = new File("team8_logFile14.txt");
+        setPath=false;
  
         
     }
     
+    /**
+     * Create logfile if not created.
+     * Set file path.
+     * Write incoming messages or exceptions to file 
+     * @param message 
+     */
     @Override
     public void onMessage(Message message) {
         
         TextMessage msg = (TextMessage) message;
+        
         {
             try {
                 if (!logFile.exists()) 
                 {
                     logFile.createNewFile();    
                 }
-                adminBean.setFilePath(logFile.getAbsolutePath());
+                
+                if(!setPath)
+                {
+                    adminBean.setFilePath(logFile.getAbsolutePath());
+                    setPath=true;
+                }
                 
                 if(!msg.getText().equals(""))
                 {
@@ -63,7 +85,6 @@ public class POMessageBean implements MessageListener {
                     wr.close();
                 }
                 
-                System.out.println(msg.getText());
             } catch (Exception ex) {
                 try {
                     wr.write(ex.toString());

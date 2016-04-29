@@ -5,11 +5,12 @@
  */
 package admin;
 
-import ShoppingCartEjb.ShoppingCartLocal;
 import entity.Manufacturer;
 import entity.Product;
 import entity.ProductCode;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -24,9 +25,15 @@ import log.LoggingLocal;
 @Stateless
 public class adminBean implements adminBeanLocal {
 
+    /**
+     * Injected Beans
+     */
     @EJB
     private LoggingLocal logging;
 
+    /**
+     * Entity Manager for Persistence
+     */
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
 
@@ -34,16 +41,23 @@ public class adminBean implements adminBeanLocal {
         em.persist(object);
     }
     
-    
     private String path;
     private Query query;
     private Manufacturer manufacturer;
     private ProductCode code;
     private boolean created = false;
+    private Date date;
+    
 
+    /**
+     * Add item to database 
+     *Send details to log.
+     * @param id
+     */
     @Override
-    public void addItem(Product po, String prodcode, int id)
+    public void addItem(Product po, String prodcode, int id,final int adminID)
     {
+      date = new Date();  
         
       query = em.createNamedQuery("Product.findMaxID");     
       po.setProductId((int)query.getSingleResult()+1);
@@ -62,18 +76,32 @@ public class adminBean implements adminBeanLocal {
       System.out.println(po.toString());
       
       em.persist(po);
-      logging.sendMessageToQueue("Added Item:Product ID ="+po.getProductId()+":Description = "+po.getDescription()+":Qty = "+po.getQuantityOnHand());
+      logging.sendMessageToQueue("Date "+date+", AdminID:"+adminID+
+              ", Added Item:Product ID ="+po.getProductId()+
+              ":Description = "+po.getDescription()+":Qty = "+po.getQuantityOnHand());
     }
     
+    /**
+     * Remove item from database
+     * Send details to log.
+     * @param id 
+     */
     @Override
-    public void removeItem(final int id)
+    public void removeItem(final int id, final int adminID)
     {
+       date = new Date();
        query = em.createNamedQuery("Product.findByProductId")
                .setParameter("productId", id);
        em.remove(query.getSingleResult());
-       logging.sendMessageToQueue("Removed Item: "+query.getSingleResult().toString());
+       logging.sendMessageToQueue("Date "+date+", AdminID:"+adminID
+               +", Removed Item: "+query.getSingleResult().toString());
     }
     
+    /**
+     * Set quantity in database for product.
+     * @param id
+     * @param qty 
+     */
     @Override 
     public void setQty(final int id, final int qty)
     {
@@ -85,16 +113,28 @@ public class adminBean implements adminBeanLocal {
                 query.executeUpdate();
     }
     
+    /**
+     * Set log file path.
+     * @param path 
+     */
     @Override
     public void setFilePath(String path){
         this.path = path;
+        System.out.print("Path1:"+path);
     }
 
+    /**
+     * get logfile path
+     * @return 
+     */
     @Override
     public String getPath() {
         return path;
     }
     
+    /**
+     * Create log file
+     */
     @Override
     public void createLogFile()
     {
@@ -105,11 +145,30 @@ public class adminBean implements adminBeanLocal {
         }
     }
 
+    /**
+     * Get file created value
+     * @return 
+     */
     public boolean isCreated() {
         return created;
     }
 
+    /**
+     * Set file created value.
+     * @param created 
+     */
     public void setCreated(boolean created) {
         this.created = created;
-    }   
+    }
+    
+  
+    
+    
+    
+    
+    
+    
+
+    
+    
 }
