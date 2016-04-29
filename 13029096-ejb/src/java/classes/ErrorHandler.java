@@ -7,20 +7,27 @@ package classes;
 
 /**
  *
- * @author Anon
+ * @author Benjamin
  */
 public class ErrorHandler  {
     /**
-     * |This class is intended to act as error message helper
+     * This class is intended to act as error message helper
      * we can use it across all instances of EJB and dynamically decide what error messages to
      * display at any given time
      */
     public String erroMessage;
-
+    /**
+     * 
+     * @return returns a error Message 
+     */
     public String getErroMessage() {
         return erroMessage;
     }
-
+    /**
+     * 
+     * @param erroMessage
+     * @brief set errorMesage
+     */
     public void setErroMessage(String erroMessage) {
         this.erroMessage = erroMessage;
     }

@@ -9,7 +9,7 @@ import entity.Product;
 
 /**
  *
- * @author Anon
+ * @author Benjamin
  */
 public class PurchaseItem {
     /**

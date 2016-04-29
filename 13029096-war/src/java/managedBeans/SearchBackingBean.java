@@ -21,7 +21,7 @@ import userSearches.userSearchesLocal;
 
 /**
  *
- * @author Anon
+ * @author Benjamin
  */
 
 
@@ -182,16 +182,20 @@ public class SearchBackingBean {
     public void searchCustomerbyID(int customer_id){
         if(this.customerFacade.find(customer_id)!=null){
           this.userSearches.addSingleSerachResultForCustomer((Customer)this.customerFacade.find(customer_id));
-          System.out.println("I am adding new Customer");
           this.userSearches.setSingleCustomerFound(true);
-          System.out.println("I am setting to: "+this.userSearches.getCustomerFound());
           this.userSearches.setSuccessfulSearch(true);
         }
         else{
             this.userSearches.setSuccessfulSearch(false);
-            System.out.println("I am adding nothing");
         }
     }
+    /**
+     * 
+     * @param name 
+     * This method searches a Product by its name
+     * name is a String we search all products and see is userInput 
+     * contained in the current product of the list
+     */
     public void searchProductByNAme(String name){
        List<Product>allProducts = this.userSearches.getAllProducts();
        int len = allProducts.size();
@@ -205,6 +209,12 @@ public class SearchBackingBean {
           }
        }
     }
+    /**
+     * 
+     * @return result page
+     * 
+     * this method initialises the users search 
+     */
     public String initialiseSearch(){
       String page = "";
       this.clearLists();
@@ -220,6 +230,10 @@ public class SearchBackingBean {
       } 
       return page;
     }
+    /**
+     * 
+     * @param name search customers by name. 
+     */
     public void searchCustomerByName(String name){
           System.out.println("In serach");
        List<Customer>allCustomers = this.userSearches.getAllCustomers();
@@ -265,6 +279,12 @@ public class SearchBackingBean {
         this.userSearches.setUserInput("");
        return  result_page;
     }
+    /**
+     * 
+     * @return string for the next page
+     * This method is fired when the user clicks on commandButton
+     * All required fields have been set in the UI
+     */
     public String performAction2(){
         System.out.println("I am i here!!");
         String result_page="searchresults";
@@ -323,6 +343,10 @@ public class SearchBackingBean {
        
       return this.userSearches.getSearchedCustomer();
     }
+    /**
+     * 
+     * @return a boolean to see is the product list empty or full 
+     */
     public boolean productsNotEmpty(){
       if(this.userSearches.getSearchedProducts().size()>0){
         return true;
@@ -331,18 +355,39 @@ public class SearchBackingBean {
         return false;
       }
     }
+    /**
+     * 
+     * @param choice integer value to identify what user wants to search 
+     */
     public void setUserSearchChoice(int choice){
         this.userSearches.setUserSearchChoice(choice);
     }
+    /**
+     * 
+     * @return user choice 
+     */
     public int getUserSearchChoice(){
      return this.userSearches.getUserSearchchoice();
     }
+    /**
+     * 
+     * @return boolean is a product found
+     * 
+     */
     public boolean isProductFound(){
         return this.userSearches.getProductFound();
     }
+    /**
+     * 
+     * @return boolean is Customer found 
+     */
     public boolean isCustomerFound(){
      return this.userSearches.getCustomerFound();
     }
+    /**
+     * 
+     * @return boolean to evaluate is the customer list empty or not 
+     */
     public boolean customersNotEmpty(){
       if(this.userSearches.getSearchedCustomer().size()>0){
         return true;
@@ -351,6 +396,9 @@ public class SearchBackingBean {
        return false;
       }
     }
+    /**
+     * Constructor
+     */
     public SearchBackingBean() {
         
     }
