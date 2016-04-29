@@ -74,84 +74,161 @@ public class Product implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
     private List<PurchaseOrder> purchaseOrderList;
     
-    
-
+    /**
+     *
+     */
     public Product() {
     }
 
+    /**
+     *
+     * @param productId
+     */
     public Product(Integer productId) {
         this.productId = productId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getProductId() {
         return productId;
     }
 
+    /**
+     *
+     * @param productId
+     */
     public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getPurchaseCost() {
         return purchaseCost;
     }
 
+    /**
+     *
+     * @param purchaseCost
+     */
     public void setPurchaseCost(BigDecimal purchaseCost) {
         this.purchaseCost = purchaseCost;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getQuantityOnHand() {
         return quantityOnHand;
     }
 
+    /**
+     *
+     * @param quantityOnHand
+     */
     public void setQuantityOnHand(Integer quantityOnHand) {
         this.quantityOnHand = quantityOnHand;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getMarkup() {
         return markup;
     }
 
+    /**
+     *
+     * @param markup
+     */
     public void setMarkup(BigDecimal markup) {
         this.markup = markup;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAvailable() {
         return available;
     }
 
+    /**
+     *
+     * @param available
+     */
     public void setAvailable(String available) {
         this.available = available;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     *
+     * @return
+     */
     public ProductCode getProductCode() {
         return productCode;
     }
 
+    /**
+     *
+     * @param productCode
+     */
     public void setProductCode(ProductCode productCode) {
         this.productCode = productCode;
     }
 
+    /**
+     *
+     * @return
+     */
     public Manufacturer getManufacturerId() {
         return manufacturerId;
     }
 
+    /**
+     *
+     * @param manufacturerId
+     */
     public void setManufacturerId(Manufacturer manufacturerId) {
         this.manufacturerId = manufacturerId;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public List<PurchaseOrder> getPurchaseOrderList() {
         return purchaseOrderList;
     }
 
+    /**
+     *
+     * @param purchaseOrderList
+     */
     public void setPurchaseOrderList(List<PurchaseOrder> purchaseOrderList) {
         this.purchaseOrderList = purchaseOrderList;
     }

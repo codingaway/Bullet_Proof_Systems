@@ -21,15 +21,27 @@ public class Gp14userFacade extends AbstractFacade<Gp14user> {
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public Gp14userFacade() {
         super(Gp14user.class);
     }
     
+    /**
+     *
+     * @param userName
+     * @return
+     */
     public Integer getCustomerIdByUsername(String userName)
     {
         List<Gp14user> userList = em.createNamedQuery("Gp14user.findByUsername")

@@ -20,6 +20,10 @@ public class ProductCodeBean {
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
     
+    /**
+     *
+     * @return
+     */
     public List<ProductCode> getProductCode()
     {
         Query query = em.createNamedQuery("ProductCode.findAll");

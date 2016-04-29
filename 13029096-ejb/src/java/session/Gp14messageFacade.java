@@ -22,15 +22,27 @@ public class Gp14messageFacade extends AbstractFacade<Gp14message> {
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public Gp14messageFacade() {
         super(Gp14message.class);
     }
     
+    /**
+     *
+     * @param custId
+     * @return
+     */
     public String getMessageById(Integer custId)
     {
         List<Gp14message> mList = em.createNamedQuery("Gp14message.findByCustomerId")

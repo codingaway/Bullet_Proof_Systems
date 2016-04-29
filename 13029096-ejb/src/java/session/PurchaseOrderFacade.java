@@ -20,11 +20,18 @@ public class PurchaseOrderFacade extends AbstractFacade<PurchaseOrder> {
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public PurchaseOrderFacade() {
         super(PurchaseOrder.class);
     }

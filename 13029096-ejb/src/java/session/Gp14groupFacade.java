@@ -20,11 +20,18 @@ public class Gp14groupFacade extends AbstractFacade<Gp14group> {
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public Gp14groupFacade() {
         super(Gp14group.class);
     }

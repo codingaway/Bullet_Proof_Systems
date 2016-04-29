@@ -33,10 +33,18 @@ public class Catelog implements Serializable{
     @ManagedProperty(value = "#{param.cateId}")
     private String cateId;
 
+    /**
+     *
+     * @return Item category 
+     */
     public String getCateId() {
         return cateId;
     }
 
+    /**
+     *
+     * @param cateId set Item category
+     */
     public void setCateId(String cateId) {
         this.cateId = cateId;
     }
@@ -44,9 +52,16 @@ public class Catelog implements Serializable{
      * Creates a new instance of Catelog
      */
     
+    /**
+     * Default constructor
+     */
     public Catelog() {
     }
     
+    /**
+     *
+     * @return Product List
+     */
     public List<Product> getProducts()
     {
         if(cateId == null)
@@ -60,6 +75,10 @@ public class Catelog implements Serializable{
         }
     }
     
+    /**
+     *
+     * @return List of product code list
+     */
     public List<ProductCode> getProductCodeList()
     {
         return pcf.findAll();

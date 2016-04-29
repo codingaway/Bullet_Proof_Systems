@@ -20,6 +20,10 @@ public class Logout {
     public Logout() {
     }
     
+    /**
+     *
+     * @return
+     */
     public String doLogout()
     {
         FacesContext context = FacesContext.getCurrentInstance();

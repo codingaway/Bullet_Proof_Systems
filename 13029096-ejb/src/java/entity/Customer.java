@@ -88,114 +88,225 @@ public class Customer implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     private List<PurchaseOrder> purchaseOrderList;
 
+    /**
+     *
+     */
     public Customer() {
     }
 
+    /**
+     *
+     * @param customerId
+     */
     public Customer(Integer customerId) {
         this.customerId = customerId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getCustomerId() {
         return customerId;
     }
 
+    /**
+     *
+     * @param customerId
+     */
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAddressline1() {
         return addressline1;
     }
 
+    /**
+     *
+     * @param addressline1
+     */
     public void setAddressline1(String addressline1) {
         this.addressline1 = addressline1;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAddressline2() {
         return addressline2;
     }
 
+    /**
+     *
+     * @param addressline2
+     */
     public void setAddressline2(String addressline2) {
         this.addressline2 = addressline2;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     *
+     * @param city
+     */
     public void setCity(String city) {
         this.city = city;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getState() {
         return state;
     }
 
+    /**
+     *
+     * @param state
+     */
     public void setState(String state) {
         this.state = state;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPhone() {
         return phone;
     }
 
+    /**
+     *
+     * @param phone
+     */
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFax() {
         return fax;
     }
 
+    /**
+     *
+     * @param fax
+     */
     public void setFax(String fax) {
         this.fax = fax;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getCreditLimit() {
         return creditLimit;
     }
 
+    /**
+     *
+     * @param creditLimit
+     */
     public void setCreditLimit(Integer creditLimit) {
         this.creditLimit = creditLimit;
     }
 
+    /**
+     *
+     * @return
+     */
     public MicroMarket getZip() {
         return zip;
     }
 
+    /**
+     *
+     * @param zip
+     */
     public void setZip(MicroMarket zip) {
         this.zip = zip;
     }
 
+    /**
+     *
+     * @return
+     */
     public DiscountCode getDiscountCode() {
         return discountCode;
     }
 
+    /**
+     *
+     * @param discountCode
+     */
     public void setDiscountCode(DiscountCode discountCode) {
         this.discountCode = discountCode;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public List<PurchaseOrder> getPurchaseOrderList() {
         return purchaseOrderList;
     }
 
+    /**
+     *
+     * @param purchaseOrderList
+     */
     public void setPurchaseOrderList(List<PurchaseOrder> purchaseOrderList) {
         this.purchaseOrderList = purchaseOrderList;
     }

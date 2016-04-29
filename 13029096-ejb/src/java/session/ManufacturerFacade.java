@@ -20,11 +20,18 @@ public class ManufacturerFacade extends AbstractFacade<Manufacturer> {
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public ManufacturerFacade() {
         super(Manufacturer.class);
     }

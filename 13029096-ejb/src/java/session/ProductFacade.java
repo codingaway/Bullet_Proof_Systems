@@ -22,15 +22,27 @@ public class ProductFacade extends AbstractFacade<Product> {
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public ProductFacade() {
         super(Product.class);
     }
     
+    /**
+     *
+     * @param pcode
+     * @return
+     */
     public List<Product>getProdByCategory(String pcode)
     {
         List<Product> pList = em.createNamedQuery("Product.findByProductCode")

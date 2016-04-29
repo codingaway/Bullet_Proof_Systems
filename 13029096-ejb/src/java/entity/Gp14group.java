@@ -34,6 +34,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Gp14group implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     *
+     */
     @EmbeddedId
     protected Gp14groupPK gp14groupPK;
     @Basic(optional = false)
@@ -42,34 +46,67 @@ public class Gp14group implements Serializable {
     @Column(name = "USERNAME")
     private String username;
 
+    /**
+     *
+     */
     public Gp14group() {
     }
 
+    /**
+     *
+     * @param gp14groupPK
+     */
     public Gp14group(Gp14groupPK gp14groupPK) {
         this.gp14groupPK = gp14groupPK;
     }
 
+    /**
+     *
+     * @param gp14groupPK
+     * @param username
+     */
     public Gp14group(Gp14groupPK gp14groupPK, String username) {
         this.gp14groupPK = gp14groupPK;
         this.username = username;
     }
 
+    /**
+     *
+     * @param customerId
+     * @param groupname
+     */
     public Gp14group(int customerId, String groupname) {
         this.gp14groupPK = new Gp14groupPK(customerId, groupname);
     }
 
+    /**
+     *
+     * @return
+     */
     public Gp14groupPK getGp14groupPK() {
         return gp14groupPK;
     }
 
+    /**
+     *
+     * @param gp14groupPK
+     */
     public void setGp14groupPK(Gp14groupPK gp14groupPK) {
         this.gp14groupPK = gp14groupPK;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }

@@ -15,8 +15,28 @@ import javax.ejb.Local;
  */
 @Local
 public interface MessageHandlerLocal {
+
+    /**
+     *
+     * @return
+     */
     public String getErroMessage();
+
+    /**
+     *
+     * @param message
+     */
     public void setErroMessage(String message); 
+
+    /**
+     *
+     * @return
+     */
     public String getMessage();
+
+    /**
+     *
+     * @param message
+     */
     public void setMessage(String message); 
 }

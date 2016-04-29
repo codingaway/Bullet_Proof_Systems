@@ -18,7 +18,8 @@ import session.Gp14messageFacade;
 import session.Gp14userFacade;
 
 /**
- *
+ * Managed Bean to manage user editprofile form data
+ * 
  * @author Abdul Halim <13029096@studentmail.ul.ie>
  */
 @Named(value = "editProfileBean")
@@ -255,8 +256,10 @@ public class EditProfileBean implements Serializable {
         this.name = name;
     }
     
-    
-    
+    /**
+     *
+     * @return
+     */
     public String updateProfile()
     {   
         Integer userId = null;
@@ -313,6 +316,10 @@ public class EditProfileBean implements Serializable {
             return null;
     }
     
+    /**
+     *
+     * @return
+     */
     public Integer getLoggedInUserId()
     {
         Integer userId = null;

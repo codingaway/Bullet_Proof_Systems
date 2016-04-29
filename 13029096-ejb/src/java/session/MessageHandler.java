@@ -28,6 +28,11 @@ public class MessageHandler implements MessageHandlerLocal {
  * 
  * @return a errorMessage 
  */
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String getErroMessage() {
         return this.errorMessage;
@@ -36,6 +41,12 @@ public class MessageHandler implements MessageHandlerLocal {
  * 
  * @param message sets a errorMessage 
  */
+
+    /**
+     *
+     * @param message
+     */
+
     @Override
     public void setErroMessage(String message) {
         this.errorMessage = message;
@@ -44,6 +55,11 @@ public class MessageHandler implements MessageHandlerLocal {
  * 
  * @return a user Message
  */
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String getMessage() {
        return this.message;
@@ -52,6 +68,12 @@ public class MessageHandler implements MessageHandlerLocal {
  * 
  * @param message set a userMessage 
  */
+
+    /**
+     *
+     * @param message
+     */
+    
     @Override
     public void setMessage(String message) {
        this.message = message;

@@ -53,50 +53,97 @@ public class MicroMarket implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "zip")
     private List<Customer> customerList;
 
+    /**
+     *
+     */
     public MicroMarket() {
     }
 
+    /**
+     *
+     * @param zipCode
+     */
     public MicroMarket(String zipCode) {
         this.zipCode = zipCode;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getZipCode() {
         return zipCode;
     }
 
+    /**
+     *
+     * @param zipCode
+     */
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
+    /**
+     *
+     * @return
+     */
     public Double getRadius() {
         return radius;
     }
 
+    /**
+     *
+     * @param radius
+     */
     public void setRadius(Double radius) {
         this.radius = radius;
     }
 
+    /**
+     *
+     * @return
+     */
     public Double getAreaLength() {
         return areaLength;
     }
 
+    /**
+     *
+     * @param areaLength
+     */
     public void setAreaLength(Double areaLength) {
         this.areaLength = areaLength;
     }
 
+    /**
+     *
+     * @return
+     */
     public Double getAreaWidth() {
         return areaWidth;
     }
 
+    /**
+     *
+     * @param areaWidth
+     */
     public void setAreaWidth(Double areaWidth) {
         this.areaWidth = areaWidth;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public List<Customer> getCustomerList() {
         return customerList;
     }
 
+    /**
+     *
+     * @param customerList
+     */
     public void setCustomerList(List<Customer> customerList) {
         this.customerList = customerList;
     }

@@ -52,47 +52,91 @@ public class ProductCode implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productCode")
     private List<Product> productList;
 
+    /**
+     *
+     */
     public ProductCode() {
     }
 
+    /**
+     *
+     * @param prodCode
+     */
     public ProductCode(String prodCode) {
         this.prodCode = prodCode;
     }
 
+    /**
+     *
+     * @param prodCode
+     * @param discountCode
+     */
     public ProductCode(String prodCode, Character discountCode) {
         this.prodCode = prodCode;
         this.discountCode = discountCode;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getProdCode() {
         return prodCode;
     }
 
+    /**
+     *
+     * @param prodCode
+     */
     public void setProdCode(String prodCode) {
         this.prodCode = prodCode;
     }
 
+    /**
+     *
+     * @return
+     */
     public Character getDiscountCode() {
         return discountCode;
     }
 
+    /**
+     *
+     * @param discountCode
+     */
     public void setDiscountCode(Character discountCode) {
         this.discountCode = discountCode;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     *
+     * @param description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public List<Product> getProductList() {
         return productList;
     }
 
+    /**
+     *
+     * @param productList
+     */
     public void setProductList(List<Product> productList) {
         this.productList = productList;
     }

@@ -68,73 +68,144 @@ public class PurchaseOrder implements Serializable {
     @ManyToOne(optional = false)
     private Customer customerId;
 
+    /**
+     *
+     */
     public PurchaseOrder() {
     }
 
+    /**
+     *
+     * @param orderNum
+     */
     public PurchaseOrder(Integer orderNum) {
         this.orderNum = orderNum;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getOrderNum() {
         return orderNum;
     }
 
+    /**
+     *
+     * @param orderNum
+     */
     public void setOrderNum(Integer orderNum) {
         this.orderNum = orderNum;
     }
 
+    /**
+     *
+     * @return
+     */
     public Short getQuantity() {
         return quantity;
     }
 
+    /**
+     *
+     * @param quantity
+     */
     public void setQuantity(Short quantity) {
         this.quantity = quantity;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getShippingCost() {
         return shippingCost;
     }
 
+    /**
+     *
+     * @param shippingCost
+     */
     public void setShippingCost(BigDecimal shippingCost) {
         this.shippingCost = shippingCost;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getSalesDate() {
         return salesDate;
     }
 
+    /**
+     *
+     * @param salesDate
+     */
     public void setSalesDate(Date salesDate) {
         this.salesDate = salesDate;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getShippingDate() {
         return shippingDate;
     }
 
+    /**
+     *
+     * @param shippingDate
+     */
     public void setShippingDate(Date shippingDate) {
         this.shippingDate = shippingDate;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFreightCompany() {
         return freightCompany;
     }
 
+    /**
+     *
+     * @param freightCompany
+     */
     public void setFreightCompany(String freightCompany) {
         this.freightCompany = freightCompany;
     }
 
+    /**
+     *
+     * @return
+     */
     public Product getProductId() {
         return productId;
     }
 
+    /**
+     *
+     * @param productId
+     */
     public void setProductId(Product productId) {
         this.productId = productId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Customer getCustomerId() {
         return customerId;
     }
 
+    /**
+     *
+     * @param customerId
+     */
     public void setCustomerId(Customer customerId) {
         this.customerId = customerId;
     }

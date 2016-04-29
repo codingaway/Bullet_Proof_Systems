@@ -20,11 +20,18 @@ public class MicroMarketFacade extends AbstractFacade<MicroMarket> {
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public MicroMarketFacade() {
         super(MicroMarket.class);
     }

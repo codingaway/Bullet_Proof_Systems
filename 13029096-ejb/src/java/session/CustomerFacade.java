@@ -22,15 +22,27 @@ public class CustomerFacade extends AbstractFacade<Customer> {
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public CustomerFacade() {
         super(Customer.class);
     }
     
+    /**
+     *
+     * @param custId
+     * @return
+     */
     public Customer getCustomerById(Integer custId)
     {
         List<Customer> cList = em.createNamedQuery("Customer.findByCustomerId")
@@ -43,6 +55,19 @@ public class CustomerFacade extends AbstractFacade<Customer> {
             return null;     
     }
     
+    /**
+     *
+     * @param id
+     * @param name
+     * @param addr1
+     * @param addr2
+     * @param city
+     * @param state
+     * @param email
+     * @param phone
+     * @param message
+     * @return
+     */
     public boolean updateCustomer(Integer id, String name, String addr1, String addr2, 
             String city, String state, String email, String phone, String message) 
     {

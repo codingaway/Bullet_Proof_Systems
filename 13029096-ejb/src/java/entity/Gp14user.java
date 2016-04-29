@@ -48,39 +48,76 @@ public class Gp14user implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
 
+    /**
+     *
+     */
     public Gp14user() {
     }
 
+    /**
+     *
+     * @param customerId
+     */
     public Gp14user(Integer customerId) {
         this.customerId = customerId;
     }
 
+    /**
+     *
+     * @param customerId
+     * @param username
+     * @param password
+     */
     public Gp14user(Integer customerId, String username, String password) {
         this.customerId = customerId;
         this.username = username;
         this.password = password;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getCustomerId() {
         return customerId;
     }
 
+    /**
+     *
+     * @param customerId
+     */
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }

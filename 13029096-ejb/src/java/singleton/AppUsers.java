@@ -37,6 +37,9 @@ public class AppUsers {
     @EJB
     private GroupEjb gejb;
 
+    /**
+     *
+     */
     @PostConstruct
     public void init() {
         // here you can perform queries or transactions

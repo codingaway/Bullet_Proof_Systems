@@ -20,11 +20,18 @@ public class ProductCodeFacade extends AbstractFacade<ProductCode> {
     @PersistenceContext(unitName = "13029096-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    /**
+     *
+     */
     public ProductCodeFacade() {
         super(ProductCode.class);
     }

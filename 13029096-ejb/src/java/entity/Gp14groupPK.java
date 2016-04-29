@@ -29,26 +29,50 @@ public class Gp14groupPK implements Serializable {
     @Column(name = "GROUPNAME")
     private String groupname;
 
+    /**
+     *
+     */
     public Gp14groupPK() {
     }
 
+    /**
+     *
+     * @param customerId
+     * @param groupname
+     */
     public Gp14groupPK(int customerId, String groupname) {
         this.customerId = customerId;
         this.groupname = groupname;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getCustomerId() {
         return customerId;
     }
 
+    /**
+     *
+     * @param customerId
+     */
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getGroupname() {
         return groupname;
     }
 
+    /**
+     *
+     * @param groupname
+     */
     public void setGroupname(String groupname) {
         this.groupname = groupname;
     }

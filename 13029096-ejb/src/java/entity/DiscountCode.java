@@ -48,34 +48,65 @@ public class DiscountCode implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "discountCode")
     private List<Customer> customerList;
 
+    /**
+     *
+     */
     public DiscountCode() {
     }
 
+    /**
+     *
+     * @param discountCode
+     */
     public DiscountCode(String discountCode) {
         this.discountCode = discountCode;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDiscountCode() {
         return discountCode;
     }
 
+    /**
+     *
+     * @param discountCode
+     */
     public void setDiscountCode(String discountCode) {
         this.discountCode = discountCode;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getRate() {
         return rate;
     }
 
+    /**
+     *
+     * @param rate
+     */
     public void setRate(BigDecimal rate) {
         this.rate = rate;
     }
 
+    /**
+     *
+     * @return
+     */
     @XmlTransient
     public List<Customer> getCustomerList() {
         return customerList;
     }
 
+    /**
+     *
+     * @param customerList
+     */
     public void setCustomerList(List<Customer> customerList) {
         this.customerList = customerList;
     }

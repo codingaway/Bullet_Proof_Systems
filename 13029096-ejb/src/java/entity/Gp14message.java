@@ -40,25 +40,48 @@ public class Gp14message implements Serializable {
     @Column(name = "MESSAGE")
     private String message;
 
+    /**
+     *
+     */
     public Gp14message() {
     }
 
+    /**
+     *
+     * @param customerId
+     */
     public Gp14message(Integer customerId) {
         this.customerId = customerId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getCustomerId() {
         return customerId;
     }
 
+    /**
+     *
+     * @param customerId
+     */
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMessage() {
         return message;
     }
 
+    /**
+     *
+     * @param message
+     */
     public void setMessage(String message) {
         this.message = message;
     }

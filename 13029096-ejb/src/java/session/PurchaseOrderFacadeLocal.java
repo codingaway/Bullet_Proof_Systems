@@ -16,18 +16,48 @@ import javax.ejb.Local;
 @Local
 public interface PurchaseOrderFacadeLocal {
 
+    /**
+     *
+     * @param purchaseOrder
+     */
     void create(PurchaseOrder purchaseOrder);
 
+    /**
+     *
+     * @param purchaseOrder
+     */
     void edit(PurchaseOrder purchaseOrder);
 
+    /**
+     *
+     * @param purchaseOrder
+     */
     void remove(PurchaseOrder purchaseOrder);
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     PurchaseOrder find(Object id);
 
+    /**
+     *
+     * @return
+     */
     List<PurchaseOrder> findAll();
 
+    /**
+     *
+     * @param range
+     * @return
+     */
     List<PurchaseOrder> findRange(int[] range);
 
+    /**
+     *
+     * @return
+     */
     int count();
     
     

@@ -16,7 +16,8 @@ import session.Gp14messageFacade;
 import session.Gp14userFacade;
 
 /**
- *
+ * Managed bean to display user profile data.
+ * 
  * @author Abdul Halim <13029096@studentmail.ul.ie>
  */
 @Named(value = "userProfileBean")
@@ -34,14 +35,6 @@ public class UserProfileBean implements Serializable {
     
     private Customer customer;
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     /**
      * Creates a new instance of ViewProfileBean
      */
@@ -49,6 +42,10 @@ public class UserProfileBean implements Serializable {
         System.err.println("Calling");
     }
     
+    /**
+     *
+     * @return page outcome as "profile" that displays logged in user profile
+     */
     public String showUserProfile()
     {
         Integer profileId = null;
@@ -68,10 +65,14 @@ public class UserProfileBean implements Serializable {
             return "404";
     }
     
+    /**
+     *
+     * @return Customer's message 
+     */
     public String getMessage()
     {
         Integer profileId = null;
-        if(customer != null) // view request without parameters -> Viewing own profile
+        if(customer != null)
         {
             profileId = customer.getCustomerId();
             if(profileId != null)
@@ -82,17 +83,30 @@ public class UserProfileBean implements Serializable {
         return null;
     }
     
+    /**
+     *
+     * @return true if requested customerId is same as logged-in userId false otherwise
+     * 
+     */
     public boolean isOwnProfile()
     {
        return (this.customer != null && this.customer.getCustomerId().equals(this.getLoggedInUserId()));
     }
     
+    /**
+     *
+     * @return customer ID
+     */
     public Integer getCustId() {
         if(customer != null)
             return this.customer.getCustomerId();
         return null;
     }
     
+    /**
+     *
+     * @return customer id for logged in user
+     */
     public Integer getLoggedInUserId()
     {
         Integer userId = null;
@@ -105,6 +119,11 @@ public class UserProfileBean implements Serializable {
         return userId;
     }
     
+    /**
+     *
+     * @param profileId - customer ID
+     * @return view outcome "profile" if customer ID is valid
+     */
     public String getProfileById(Integer profileId)
     {
         if(profileId != null)
@@ -116,13 +135,11 @@ public class UserProfileBean implements Serializable {
         return "404";
     }
     
-    public String getCustName()
-    {
-        if(customer != null)
-            return this.customer.getName();
-        return null;
-    }
     
+    /**
+     *
+     * @return Customer name
+     */
     public String getName()
     {
         if(customer != null)
@@ -130,6 +147,10 @@ public class UserProfileBean implements Serializable {
         return null;
     }
     
+    /**
+     *
+     * @return Customer email address
+     */
     public String getEmail()
     {
         if(customer != null)
@@ -137,6 +158,10 @@ public class UserProfileBean implements Serializable {
         return null;
     }
     
+    /**
+     *
+     * @return Customer phone number
+     */
     public String getPhone()
     {
         if(customer != null)
@@ -144,6 +169,10 @@ public class UserProfileBean implements Serializable {
         return null;
     }
     
+    /**
+     *
+     * @return Customer address line 1
+     */
     public String getAddress1()
     {
         if(customer != null)
@@ -151,20 +180,32 @@ public class UserProfileBean implements Serializable {
         return null;
     }
     
+    /**
+     *
+     * @return Customer Address line 2
+     */
     public String getAddress2()
     {
         if(customer != null)
-            return this.customer.getAddressline1();
+            return this.customer.getAddressline2();
         return null;
     }
     
-     public String getState()
+    /**
+     *
+     * @return Return customer address State
+     */
+    public String getState()
     {
         if(customer != null)
             return this.customer.getState();
         return null;
     }
      
+    /**
+     *
+     * @return Customer city
+     */
     public String getCity()
     {
         if(customer != null)
@@ -172,6 +213,26 @@ public class UserProfileBean implements Serializable {
         return null;
     }
     
+    /**
+     *
+     * @return Customer object
+     */
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    /**
+     *
+     * @param Customer entity object
+     */
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
+    /**
+     *
+     * @return "true" if customer is not null
+     */
     public boolean isCustomerExist()
     {
         return this.customer != null;
