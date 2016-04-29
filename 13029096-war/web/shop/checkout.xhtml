@@ -4,50 +4,65 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-             
+
     <ui:composition template="/templates/common.xhtml">
         <ui:define name="title">
             Checkout
         </ui:define>  
         <ui:define name="sidebar">
-            <p class="lead">Shop Name</p>
-            <h3>Category</h3>
-            <div class="list-group">
-                <h:dataTable value="#{catelog.productCodeList}"
-                             var="p" styleClass="list-group" >
-                    <h:column>
-                        <a href="#" class="list-group-item">#{p.description}</a>           
-                    </h:column>
-                </h:dataTable>
-            </div>
+            <p class="lead">Checkout</p>
+
         </ui:define>
         <ui:define name="main_content">
             <div class="row">
-               <div class="jumbotron">
-                   <h4 align="center">Checkout List</h4>
-                       <h:dataTable  class="table-bordered " style=" padding: 8px;" value="#{cardBackingBean.returnProducts()}" var="item">
-                          <h:column >
-                              <b>Product Name:&nbsp;</b>#{item.product.description}<br/> 
-                               <div class="divider"></div>
-                               <b>Price:&nbsp;</b>#{item.product.purchaseCost}&nbsp;<b>Qty:</b>#{item.product_quantity}<br/>                             
-                              <b>Total Cost:&nbsp;</b>#{item.product.purchaseCost * item.product_quantity}<br/>
-                              
-                              <br/>
-                          </h:column>
-                         
-                         </h:dataTable>
-                        #{checkoutBean.calculateCost()}
-                      <h5><b>Total Cost:</b>#{checkoutBean.totalCost}</h5>
-                      <h:commandButton styleClass="btn btn-default" action ="#{checkoutBean.logProcess()}" value="Confirm" /> 
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <h:commandButton styleClass="btn btn-default" action="#{checkoutBean.logCancel()}"  value="Cancel"/>   <br/>
-                      
-                      
-                      
 
-              </div>
+                <h4 align="center">Checkout List</h4>
+                <h:panelGroup rendered="#{cardBackingBean.returnProducts().size() gt 0}">
+                    <div class="table-responsive">
+                        <h:dataTable  styleClass="table table-bordered " 
+                                      value="#{cardBackingBean.returnProducts()}" 
+                                      var="item">
+                            <h:column>
+                                <f:facet name="header">Product Name</f:facet>
+                                    #{item.product.description}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Price</f:facet>
+                                    #{item.product.purchaseCost}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Qty</f:facet>
+                                    #{item.product_quantity}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Total Cost</f:facet>
+                                    #{item.product.purchaseCost * item.product_quantity}
+                            </h:column>
+
+                        </h:dataTable>
+
+                        <h5 class="text-right"><b>Total Cost:</b>#{checkoutBean.calculateCost()} #{checkoutBean.totalCost}</h5>
+                        <p>
+                            <h:commandButton styleClass="btn btn-warning pull-left" 
+                                             action="#{checkoutBean.logCancel()}"  
+                                             value="Cancel"/>
+                            <h:commandButton styleClass="btn btn-primary pull-right" 
+                                             action ="#{checkoutBean.logProcess()}" 
+                                             rendered="#{cardBackingBean.returnProducts().size() gt 0}"
+                                             value="Confirm" />
+
+                        </p>
+
+
+                    </div>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{cardBackingBean.returnProducts().size() lt 1}">
+                    <p>
+                        You have nothing to checkout. Please add items to your cart.
+                    </p>
+                </h:panelGroup>
             </div>
-   
+
         </ui:define>
     </ui:composition>
 </html>

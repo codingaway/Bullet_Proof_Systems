@@ -15,30 +15,55 @@
         </ui:define>
         <ui:define name="main_content">
             <div class="row">
-                <div class="jumbotron">
-                    <h4 align="center">Your Current Shopping Cart
-                        <h:commandButton style="margin-left: 60px;" styleClass="btn btn-default" action="#{checkoutBean.check()}" value="Checkout"></h:commandButton></h4>
-   
+                <div class="">
+                    <h4 align="center">Your Current Shopping Cart</h4>
+                    <h:panelGroup id="cartcontainer" rendered="#{cardBackingBean.returnProducts().size() gt 0}">
+
                         <h5>#{checkoutBean.message}</h5>
-                        <h:dataTable  class="table-bordered " style=" padding: 8px;" value="#{cardBackingBean.returnProducts()}" var="item">
-                            <h:column >
-                                <b>Product Name:&nbsp;</b>#{item.product.description}<br/> 
-                                <div class="divider"></div>
-                                <b>Price:&nbsp;</b>#{item.product.purchaseCost}&nbsp;<b>Qty:</b>#{item.product_quantity}<br/>
-                                <b>Change Quantity:&nbsp;</b><h:inputText  id="movie" style="width: 80px;" value="#{item.product_quantity}"><br/>
-                                <!--- Todo here validate user input  -->
-                                </h:inputText>&nbsp;<br/>
-
-                                <b>Total Cost:&nbsp;</b>#{item.product.purchaseCost * item.product_quantity}<br/>
-                                <h:commandButton style="border-radius:10px; text-align: right" class="btn btn-default" value="Update" action="#{item.setProduct_quantity(item.product_quantity)}">        
-                                </h:commandButton>&nbsp;&nbsp;
-                                <h:commandButton style="border-radius:10px; text-align: right" class="btn btn-default" action="#{cardBackingBean.removeProductFromList(item.product.productId)}" value="Remove">        
-                                </h:commandButton>&nbsp;&nbsp;
-                                <br/>
-                            </h:column>
-
-                        </h:dataTable>
-          
+                        <div class="table-responsive">
+                            <h:dataTable  styleClass="table table-bordered" value="#{cardBackingBean.returnProducts()}" var="item">
+                                <h:column>
+                                    <f:facet name="header">Product Name</f:facet>
+                                        #{item.product.description}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Price</f:facet>
+                                        #{item.product.purchaseCost}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Qty</f:facet>
+                                        #{item.product_quantity}
+                                </h:column>
+                                <h:column>
+                                    Change Quantity:&nbsp;&nbsp;
+                                    <h:inputText  id="movie" style="width: 80px;" value="#{item.product_quantity}">
+                                    </h:inputText>&nbsp;&nbsp;
+                                    <h:commandButton class="btn btn-info btn-sm" value="Update" action="#{item.setProduct_quantity(item.product_quantity)}">        
+                                    </h:commandButton>&nbsp;&nbsp;
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Item total</f:facet>
+                                    #{item.product.purchaseCost * item.product_quantity}
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton class="btn btn-warning btn-sm" action="#{cardBackingBean.removeProductFromList(item.product.productId)}" value="Remove">        
+                                    </h:commandButton>
+                                </h:column>
+                            </h:dataTable>
+                            
+                        </div>
+                        <h4 class="text-right">Total cost: </h4>
+                        <p>
+                            <h:commandButton 
+                                styleClass="btn btn-primary pull-right" 
+                                action="#{checkoutBean.check()}"
+                                value="Checkout">
+                            </h:commandButton>
+                        </p>
+                    </h:panelGroup> 
+                    <h:panelGroup id="emptycart" rendered="#{cardBackingBean.returnProducts().size() lt 1 }">
+                        <p>Your cart is empty</p>
+                    </h:panelGroup>
                 </div>
             </div>
         </ui:define>
