@@ -13,6 +13,7 @@ import session.ProductFacade;
 import ShoppingCartEjb.ShoppingCartLocal;
 import classes.PurchaseItem;
 import entity.Product;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.enterprise.context.Dependent;
 
@@ -44,6 +45,7 @@ public class CartBackingBean {
      * Creates a new instance of CardBackingBean
      */
     
+    double totalCost;
     public CartBackingBean() {
         
     }
@@ -134,4 +136,7 @@ public class CartBackingBean {
        shoppingCart.removeProduct(product_id);
     
     }
+     public BigDecimal getTotalCost(){
+       return this.shoppingCart.getTotalCost();
+     }
 }

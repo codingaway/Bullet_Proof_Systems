@@ -7,6 +7,7 @@ package ShoppingCartEjb;
 
 import classes.PurchaseItem;
 import entity.Product;
+import java.math.BigDecimal;
 import java.util.*;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -72,5 +73,20 @@ public class ShoppingCart implements ShoppingCartLocal {
      */
     public void persist(Object object) {
         em.persist(object);
+    }
+
+    @Override
+    public BigDecimal getTotalCost() {
+        BigDecimal cost = new BigDecimal(0);
+        int  size = cardProducts.size();
+        
+        for(int i=0;i<size;i++)
+        {
+            for(int j=0;j<cardProducts.get(i).getProduct_quantity();j++)
+            {
+                cost = cost.add(cardProducts.get(i).getProduct().getPurchaseCost());
+            }
+        }
+        return cost;
     }
 }

@@ -6,6 +6,7 @@
 package ShoppingCartEjb;
 
 import classes.PurchaseItem;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -20,6 +21,7 @@ public interface ShoppingCartLocal {
      * This Interface is provides methods 
      * for the the ShoppingCart EnterPrice Bean class 
      */
+    public BigDecimal getTotalCost();
     public List<PurchaseItem>getProducts();
     public void addProduct(PurchaseItem item);
     public void removeProduct(int product_id);
