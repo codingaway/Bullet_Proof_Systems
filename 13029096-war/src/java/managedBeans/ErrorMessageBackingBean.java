@@ -22,7 +22,7 @@ import session.MessageHandlerLocal;
 @ManagedBean
 public class ErrorMessageBackingBean {
     /**
-     *  This Enterprise Bean is designed to handle and manage all  Message types
+     *  This Managed Bean is designed to handle and manage all  Message types
      * required during the live time of the application
      */
     @EJB
@@ -50,6 +50,12 @@ public class ErrorMessageBackingBean {
      
       return this.messageHandler.getErroMessage();
     }
+    /**
+     * 
+     * @return a information message
+     * @brief this method returns a informational
+     * message to the user
+     */
     public String userMessage(){
       return this.messageHandler.getMessage();
     }

@@ -6,14 +6,12 @@
 package ShoppingCartEjb;
 
 import classes.PurchaseItem;
-import entity.Product;
-import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Anon
+ * @author Benjamin
  */
 @Local
 public interface ShoppingCartLocal {
