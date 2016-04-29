@@ -16,7 +16,7 @@ public class MessageHandler implements MessageHandlerLocal {
 
 /**
  *
- * @author Anon
+ * @author Benjamin
     /**
      * This class is intended to act as error message coordinator
      * we can use it across the app  and dynamically decide what error messages to
@@ -24,22 +24,34 @@ public class MessageHandler implements MessageHandlerLocal {
      */
     private String errorMessage;
     private String message;
-
+/**
+ * 
+ * @return a errorMessage 
+ */
     @Override
     public String getErroMessage() {
         return this.errorMessage;
     }
-
+/**
+ * 
+ * @param message sets a errorMessage 
+ */
     @Override
     public void setErroMessage(String message) {
         this.errorMessage = message;
     }
-
+/**
+ * 
+ * @return a user Message
+ */
     @Override
     public String getMessage() {
        return this.message;
     }
-
+/**
+ * 
+ * @param message set a userMessage 
+ */
     @Override
     public void setMessage(String message) {
        this.message = message;
