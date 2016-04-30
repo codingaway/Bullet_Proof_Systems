@@ -8,7 +8,6 @@ package managedBeans;
 import entity.Customer;
 import entity.Product;
 import java.util.List;
-import java.util.Locale;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -64,6 +63,10 @@ public class SearchBackingBean {
       */
     private boolean noErrorsInSelection;
 
+    /**
+     *
+     * @return
+     */
     public boolean isNoErrorsInSelection() {
         return noErrorsInSelection;
     }
@@ -121,6 +124,7 @@ public class SearchBackingBean {
     }
     /**
      * Stores the user selected option from UI
+     * @return 
      */
     public int getUser_selection1() {
         return this.userSearches.getUser_selection1();
@@ -150,6 +154,10 @@ public class SearchBackingBean {
         return this.userSearches.getUser_selection2();
     }
 
+    /**
+     *
+     * @param user_selection
+     */
     public void setUser_selection2(int user_selection) {
         this.userSearches.setUser_selection2(user_selection);
     }
@@ -338,6 +346,11 @@ public class SearchBackingBean {
         
         return this.userSearches.getSearchedProducts();
     }
+
+    /**
+     *
+     * @return
+     */
     public List<Customer>getSearchResultForCustomers(){
        // System.out.println(this.userSearches.getAllCustomers().get(0).getName());
        

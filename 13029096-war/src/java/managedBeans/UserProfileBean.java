@@ -8,7 +8,6 @@ package managedBeans;
 import entity.Customer;
 import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -224,7 +223,8 @@ public class UserProfileBean implements Serializable {
 
     /**
      *
-     * @param Customer entity object
+     * @param customer Customer entity object
+     * 
      */
     public void setCustomer(Customer customer) {
         this.customer = customer;
@@ -239,9 +239,12 @@ public class UserProfileBean implements Serializable {
         return this.customer != null;
     }
     
+    /**
+     *
+     * @return
+     */
     public String editProfile()
     {
-        System.err.println("Edit profile button called");
         return "editprofile";
     }
     

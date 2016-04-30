@@ -3,18 +3,19 @@ Source: http://blog.eisele.net/2013/01/jdbc-realm-glassfish312-primefaces342.htm
 
 GlassFish Configuration
 =============================
-GlassFish realm configuration:
+Please configure GlassFish server as follows to enable form-based login::
 	
-
-
-	- In NetBeans switch to the "Services" tab again and right click on the "GlassFish 3+" node. 
-	- Select "Start" and watch the Output window for a successful start. 
+	- In NetBeans switch to the "Services" tab  and right click on the "GlassFish 4+" node. 
+	
+	- Select "Start" and wait for GlassFish server to fully start. 
+	
 	- Right click again and select "View Domain Admin Console", (This should open default browser pointing you to http://localhost:4848/) 
-
+	
 	- Configurations > server-config > Select on "Security"
 		Check "Default Principal To Role Mapping" to "Enable" then Click "Save"
 
 	- Select "Configurations > server-config > Security > Realms" and click "New..." . 
+	
 	- Enter a name JDBCRealm and select the com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm from the drop down. Fill in the 
 	following values into the textfields:
 

@@ -46,6 +46,10 @@ public class CartBackingBean {
      */
     
     double totalCost;
+
+    /**
+     *
+     */
     public CartBackingBean() {
         
     }
@@ -117,6 +121,7 @@ public class CartBackingBean {
     }
     /**
      * This method is fired when a user decides to cancel all items in the Shopping Basket
+     * @return 
      */
     public String cancelTransaction(){
         this.shoppingCart.getProducts().clear();
@@ -132,10 +137,20 @@ public class CartBackingBean {
        shoppingCart.removeProduct(product_id);
     
     }
-     public BigDecimal getTotalCost(){
+
+    /**
+     *
+     * @return Total calculated cost
+     */
+    public BigDecimal getTotalCost(){
        return this.shoppingCart.getTotalCost();
     }
      
+    /**
+     *
+     * @param pId
+     * @return
+     */
     public boolean isItemInCart(Integer pId)
     {
         return shoppingCart.isItemInCart(pId);
