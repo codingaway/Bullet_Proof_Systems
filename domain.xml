@@ -479,7 +479,7 @@
     <application context-root="/05-NamedJPQLQueries" location="file:/Users/casper/Google%20Drive/UL_Sem06/EE4023%20-%20Distributed%20Systems/05-NamedJPQLQueries/build/web/" name="05-NamedJPQLQueries" directory-deployed="true" object-type="user">
       <property name="archiveType" value="war"></property>
       <property name="appLocation" value="file:/Users/casper/Google%20Drive/UL_Sem06/EE4023%20-%20Distributed%20Systems/05-NamedJPQLQueries/build/web/"></property>
-      <property name="org.glassfish.ejb.container.application_unique_id" value="95766645454929920"></property>
+      <property name="org.glassfish.ejb.container.application_unique_id" value="95775125186805760"></property>
       <property name="org.glassfish.persistence.app_name_property" value="05-NamedJPQLQueries"></property>
       <property name="defaultAppName" value="web"></property>
       <module name="05-NamedJPQLQueries">
@@ -495,7 +495,7 @@
       <property name="org.glassfish.ejb.startup.keepstate" value="true"></property>
       <property name="isComposite" value="true"></property>
       <property name="appLocation" value="file:/Users/casper/NetBeansProjects/13029096/dist/gfdeploy/13029096/"></property>
-      <property name="org.glassfish.ejb.container.application_unique_id" value="95766645455912960"></property>
+      <property name="org.glassfish.ejb.container.application_unique_id" value="95816831986696192"></property>
       <property name="defaultAppName" value="13029096"></property>
       <property name="keepSessions" value="true"></property>
       <engine sniffer="ear"></engine>
@@ -505,7 +505,6 @@
         <engine sniffer="web"></engine>
       </module>
       <module name="13029096-ejb.jar">
-        <property name="org.glassfish.persistence.app_name_property" value="13029096"></property>
         <engine sniffer="ejb"></engine>
         <engine sniffer="security"></engine>
         <engine sniffer="weld"></engine>

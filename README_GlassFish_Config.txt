@@ -1,5 +1,4 @@
-Source: http://blog.eisele.net/2013/01/jdbc-realm-glassfish312-primefaces342.html
-
+We are using form-based authentication using JDBC realm. Required Users, Groups are created by app on depoyment but GlasshFish server needs to be configured to allow this authentication mechanism properly.
 
 GlassFish Configuration
 =============================
@@ -32,4 +31,11 @@ Digest Algorithm:				= 	none
 
 Leave all the other defaults/blanks and select "SAVE" in the upper right corner.
 
-Alternativly copy "domain.xml" to {Netbeans Dir}//glassfish-4.1.1/glassfish/domains/domain1/config/ and restart the server.
+
+Alternativly included "domain.xml" file can be used to configure GlassFish server(may require some machine dependent modification) 
+	- Backup existing domain file from {Netbeans Dir}//glassfish-4.1.1/glassfish/domains/domain1/config/ 
+	- Copy included "domain.xml" and restart the server.
+
+Refrerences:
+------------
+	1. Source: http://blog.eisele.net/2013/01/jdbc-realm-glassfish312-primefaces342.html
