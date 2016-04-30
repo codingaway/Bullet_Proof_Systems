@@ -17,10 +17,10 @@
             <div class="row">
 
                 <h4 align="center">Checkout List</h4>
-                <h:panelGroup rendered="#{cardBackingBean.returnProducts().size() gt 0}">
+                <h:panelGroup rendered="#{cartBackingBean.returnProducts().size() gt 0}">
                     <div class="table-responsive">
                         <h:dataTable  styleClass="table table-bordered " 
-                                      value="#{cardBackingBean.returnProducts()}" 
+                                      value="#{cartBackingBean.returnProducts()}" 
                                       var="item">
                             <h:column>
                                 <f:facet name="header">Product Name</f:facet>
@@ -48,7 +48,7 @@
                                              value="Cancel"/>
                             <h:commandButton styleClass="btn btn-primary pull-right" 
                                              action ="#{checkoutBean.logProcess()}" 
-                                             rendered="#{cardBackingBean.returnProducts().size() gt 0}"
+                                             rendered="#{cartBackingBean.returnProducts().size() gt 0}"
                                              value="Confirm" />
 
                         </p>
@@ -56,7 +56,7 @@
 
                     </div>
                 </h:panelGroup>
-                <h:panelGroup rendered="#{cardBackingBean.returnProducts().size() lt 1}">
+                <h:panelGroup rendered="#{cartBackingBean.returnProducts().size() lt 1}">
                     <p>
                         You have nothing to checkout. Please add items to your cart.
                     </p>

@@ -24,7 +24,7 @@ import javax.enterprise.context.Dependent;
  */
 @ManagedBean
 @Dependent
-@Named(value = "cardBackingBean")
+@Named(value = "cartBackingBean")
 public class CartBackingBean {
     /**
      * Enterprise Bean to manage Product Entity

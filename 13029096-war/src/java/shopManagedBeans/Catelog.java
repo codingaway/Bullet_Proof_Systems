@@ -17,7 +17,8 @@ import session.ProductCodeFacade;
 import session.ProductFacade;
 
 /**
- *
+ * Managed bean for handling shop catalog page
+ * 
  * @author Abdul Halim <13029096@studentmail.ul.ie>
  */
 @Named(value = "catelog")
@@ -32,6 +33,8 @@ public class Catelog implements Serializable{
     
     @ManagedProperty(value = "#{param.cateId}")
     private String cateId;
+    
+    
 
     /**
      *
