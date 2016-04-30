@@ -10,11 +10,11 @@
             Admin - Managed Shop
         </ui:define>
         <ui:define name="sidebar">
-            <p class="lead">Shop Name</p>
-            <h3>Category</h3>
+            <p class="lead">Admin Options</p>
             <ul class="nav nav-sidebar">
-                <li><h:commandLink  value="Delete Item" action="dashboard.xhtml" immediate="true"  /></li>
-                <li><h:commandLink  value="Edit item" action="editItem.xhtml" immediate="true" /></li>
+                <li><h:commandLink value="Add item" action="manageshop.xhtml" immediate="true"  /></li>
+                <li><h:commandLink value="Edit item" action="editItem.xhtml" immediate="true" /></li>
+                <li><h:commandLink  value="Delete Item" action="dashboard.xhtml" immediate="true" /></li>
                 <li><h:commandLink  value="Open Log" action="logfile.xhtml" immediate="true" /></li>
             </ul>
         </ui:define>
@@ -22,11 +22,11 @@
             
             <div class="row">
                 <h3>Add New Item</h3><br/>
-                
-                <table border="1" style="width:50%">
+                <div class="table-condensed">
+                <table class="table table-bordered">
                     <tr>
                         <td><b>Manufacturer</b></td>
-                        <td><h:selectOneMenu value="#{administratorBean.manufacturer}" style="width: 100%;height: 40px" converter="javax.faces.Integer" >
+                        <td><h:selectOneMenu value="#{administratorBean.manufacturer}" converter="javax.faces.Integer" >
                     <f:selectItem itemLabel="Select"/>
                     <f:selectItems value="#{administratorBean.manufacturers}" var="m"
                                    itemLabel="#{m.name}" itemValue="#{m.manufacturerId}" />
@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                       <td><b>Product Code</b></td>
-                      <td><h:selectOneMenu value="#{administratorBean.code}" style="width: 100%;height: 40px" >
+                      <td><h:selectOneMenu value="#{administratorBean.code}" >
                       <!--<f:converter converterId="converterCode" />-->
                       <f:selectItem itemLabel="Select"/>
                       <f:selectItems value="#{administratorBean.productCode}" var="p"
@@ -43,41 +43,42 @@
                     </tr>
                     <tr>
                       <td><b>Purchase Cost</b></td>
-                      <td><h:inputText id="cost" value="#{administratorBean.purchaseCost}" style="width: 100%;height: 40px">
+                      <td><h:inputText id="cost" value="#{administratorBean.purchaseCost}" >
                     <f:validateDoubleRange minimum="0.1" maximum="100000.00" />
                         </h:inputText></td> 
                     </tr>
                     <tr>
                       <td><b>Quantity</b></td>
-                      <td><h:inputText id="integer" value="#{administratorBean.quantity}" style="width: 100%;height: 40px">
+                      <td><h:inputText id="integer" value="#{administratorBean.quantity}" >
                     <f:validateLongRange minimum="1" maximum="10000" />
                     </h:inputText></td> 
                     </tr>
                     <tr>
                       <td><b>Markup</b></td>
-                      <td><h:inputText id="markup" value="#{administratorBean.markup}" style="width: 100%;height: 40px">
+                      <td><h:inputText id="markup" value="#{administratorBean.markup}" >
                     <f:validateDoubleRange minimum="0.1" maximum="25.0" />
                     </h:inputText></td> 
                     </tr>
                     <tr>
-                      <td><b>Product Code</b></td>
-                      <td><h:selectOneMenu value="#{administratorBean.available}" style="width: 100%;height: 40px">
+                      <td><b>Available</b></td>
+                      <td><h:selectOneMenu value="#{administratorBean.available}" >
                     <f:selectItem itemValue="TRUE" itemLabel="True" />
                     <f:selectItem itemValue="FALSE" itemLabel="False" />
                     </h:selectOneMenu></td> 
                     </tr>
                     <tr>
                         <td><b>Description</b></td>
-                      <td><h:inputText id="regex" value="#{administratorBean.description}" style="width: 100%;height: 40px">
+                      <td><h:inputText id="regex" value="#{administratorBean.description}" >
                     <f:validateRegex pattern="[a-zA-Z]{1,25}" />
                     </h:inputText></td> 
                     </tr>
                     
                   </table>
+                </div>
 
-                 <br/> 
-                      <h:commandButton styleClass="btn btn-default" action="#{administratorBean.addItem()}" value="Add Item"/>
-                      
+                <p>
+                      <h:commandButton styleClass="btn btn-primary pull-right" action="#{administratorBean.addItem()}" value="Add Item"/>
+                </p>      
                       <h4><b>#{adminBean.message}</b></h4>
                       <h6><b><font color="red">#{administratorBean.adminMessage}</font></b></h6>
                      
