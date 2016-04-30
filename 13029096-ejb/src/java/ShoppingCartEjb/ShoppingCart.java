@@ -6,7 +6,6 @@
 package ShoppingCartEjb;
 
 import classes.PurchaseItem;
-import entity.Product;
 import java.math.BigDecimal;
 import java.util.*;
 import javax.ejb.Stateless;
@@ -23,7 +22,7 @@ public class ShoppingCart implements ShoppingCartLocal {
     /**
      * A list of Products for the Shopping cart activities
      */
-    private List<PurchaseItem>cardProducts = new ArrayList();
+    private List<PurchaseItem>cartProducts = new ArrayList();
     
     
     /**
@@ -41,7 +40,7 @@ public class ShoppingCart implements ShoppingCartLocal {
     @Override
     public List<PurchaseItem> getProducts() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    return cardProducts;
+    return cartProducts;
     }
     /**
      * 
@@ -50,8 +49,7 @@ public class ShoppingCart implements ShoppingCartLocal {
      */
     @Override
     public void addProduct(PurchaseItem item) {
-      cardProducts.add(item);
-      System.out.println(item.p.getDescription());
+      cartProducts.add(item);
     }
     /**
      * 
@@ -60,9 +58,9 @@ public class ShoppingCart implements ShoppingCartLocal {
      */
     @Override
     public void removeProduct(int product_id) {
-        for(int i=0;i<cardProducts.size();i++){ 
-          if(cardProducts.get(i).getProduct().getProductId()==product_id){
-            cardProducts.remove(i);
+        for(int i=0;i<cartProducts.size();i++){ 
+          if(cartProducts.get(i).getProduct().getProductId()==product_id){
+            cartProducts.remove(i);
             break;
           }
        }  
@@ -78,15 +76,29 @@ public class ShoppingCart implements ShoppingCartLocal {
     @Override
     public BigDecimal getTotalCost() {
         BigDecimal cost = new BigDecimal(0);
-        int  size = cardProducts.size();
+        int  size = cartProducts.size();
         
         for(int i=0;i<size;i++)
         {
-            for(int j=0;j<cardProducts.get(i).getProduct_quantity();j++)
+            for(int j=0;j<cartProducts.get(i).getProduct_quantity();j++)
             {
-                cost = cost.add(cardProducts.get(i).getProduct().getPurchaseCost());
+                cost = cost.add(cartProducts.get(i).getProduct().getPurchaseCost());
             }
         }
         return cost;
+    }
+    
+    @Override 
+    public boolean isItemInCart(Integer pId)
+    {
+        for(PurchaseItem pItem: this.cartProducts)
+        {
+            if(pItem.getProduct().getProductId().equals(pId))
+            {
+                return true;
+            }
+        }
+        
+        return false;
     }
 }

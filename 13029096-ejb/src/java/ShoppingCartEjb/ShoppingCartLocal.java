@@ -25,4 +25,5 @@ public interface ShoppingCartLocal {
     public List<PurchaseItem>getProducts();
     public void addProduct(PurchaseItem item);
     public void removeProduct(int product_id);
+    public boolean isItemInCart(Integer pId);
 }

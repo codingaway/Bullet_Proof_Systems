@@ -100,10 +100,8 @@ public class CartBackingBean {
      * 
      */
     public void add(int productID){
-        System.out.println("Test id"+ productID);
         Product p =(Product)pf.find(productID);
         PurchaseItem item =new PurchaseItem(p);
-        //   System.out.println("Test: {"+p.getAvailable()+"}");
         if(p.getAvailable().equals("TRUE")){
            item = new PurchaseItem((Product)pf.find(productID));
            if(checkList(shoppingCart.getProducts(),productID)==true){
@@ -112,11 +110,9 @@ public class CartBackingBean {
                shoppingCart.addProduct(item);
            }
             client_message="Product was succesfully added";
-            System.out.println("Help adding here");
         }
         else{
            this.client_message="Product is not available";
-           System.out.println("Added nothging because is empty");
         }
     }
     /**
@@ -138,5 +134,10 @@ public class CartBackingBean {
     }
      public BigDecimal getTotalCost(){
        return this.shoppingCart.getTotalCost();
-     }
+    }
+     
+    public boolean isItemInCart(Integer pId)
+    {
+        return shoppingCart.isItemInCart(pId);
+    }
 }

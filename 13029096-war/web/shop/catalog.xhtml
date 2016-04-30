@@ -49,8 +49,11 @@
                                     <h5 class="pull-right"> Price per-unit: €#{p.purchaseCost}</h5>
                                 </div>
                                 <div class="panel-footer">                
-                                    <h:commandButton styleClass="btn btn-success" value="Add to cart" action="#{cartBackingBean.add(p.productId)}">
+                                    <h:commandButton styleClass="btn btn-success" 
+                                                     value="Add to cart" 
+                                                     action="#{cartBackingBean.add(p.productId)}" rendered="#{!cartBackingBean.isItemInCart(p.productId)}">
                                     </h:commandButton>
+                                    <h:outputText styleClass="text-success" value=" Added to you shopping cart" rendered="#{cartBackingBean.isItemInCart(p.productId)}" />
                                     <span class="pull-right">In stock: #{p.quantityOnHand}</span>
                                 </div>
                             </div>

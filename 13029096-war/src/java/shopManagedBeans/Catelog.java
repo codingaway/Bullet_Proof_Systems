@@ -5,6 +5,7 @@
  */
 package shopManagedBeans;
 
+import ShoppingCartEjb.ShoppingCartLocal;
 import entity.Product;
 import entity.ProductCode;
 import java.io.Serializable;
@@ -33,8 +34,6 @@ public class Catelog implements Serializable{
     
     @ManagedProperty(value = "#{param.cateId}")
     private String cateId;
-    
-    
 
     /**
      *
