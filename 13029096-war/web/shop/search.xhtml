@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:composition template="../templates/common.xhtml">
         <ui:define name="title">
@@ -12,19 +13,31 @@
         <ui:define name="main_content">
             <h2> Search Our Shop:
             </h2>
-                <span class="glyphicon glyphicon-search"></span>  
-                <h:form>
-                <h:inputText  style="border-radius:8px;"  immediate="false" value="#{searchBackingBean.tmp}"></h:inputText>
-                </h:form>
-                &nbsp;&nbsp;
-                  &nbsp;<h:selectOneMenu value="#{searchBackingBean.userSearchChoice}" style="border-radius: 8px;">
+            <div class="form-inline">
+
+                <div class="form-group has-feedback">
+                    <h:inputText  styleClass="form-control" 
+                                  immediate="false" 
+                                  value="#{searchBackingBean.tmp}" p:placeholder="Search for">
+                    </h:inputText>
+                    <i class="glyphicon glyphicon-search form-control-feedback"></i> 
+                </div>
+                <h:selectOneMenu styleClass="form-control" style="height: 32px; margin-left: 20px;" value="#{searchBackingBean.userSearchChoice}" >
                     <f:selectItem id="itemUi1" itemLabel="Search Users" itemValue="2" />
                     <f:selectItem id="itemUi2" itemLabel="Search Products" itemValue="1" />
-                  </h:selectOneMenu>
-                  <h:selectOneMenu value="#{searchBackingBean.user_selection1}" style="border-radius: 8px;">
+                </h:selectOneMenu>
+                <h:selectOneMenu value="#{searchBackingBean.user_selection1}" 
+                                 styleClass="form-control" style="height: 32px; margin-left: 20px;"  >
                     <f:selectItem id="itemU1" itemLabel="Search by ID" itemValue="1" />
                     <f:selectItem id="itemU2" itemLabel="Search by Name" itemValue="2" />
-                  </h:selectOneMenu>&nbsp;&nbsp;<h:commandButton immediate="false"   id="b1"  action="#{searchBackingBean.initialiseSearch()}" value="Search" style="border-radius: 8px;" ></h:commandButton><br/><br/>
+                </h:selectOneMenu>
+                <h:commandButton immediate="false" id="b1"  
+                                 action="#{searchBackingBean.initialiseSearch()}" 
+                                 value="Search" 
+                                 styleClass="btn btn-primary"
+                                 style="margin-left: 15px;" >
+                </h:commandButton>
+            </div>
         </ui:define>
     </ui:composition>
 </html>

@@ -30,6 +30,7 @@
                                          validatorMessage="Name contains invalid characters">
                                 <f:validateRegex pattern="^[^\?\%\+\$\(\)\{\}\;\'\&amp;\&lt;\&gt;]+$" />
                             </h:inputText>
+                            <h:message for="name" style="color:red" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -44,6 +45,7 @@
                                          validatorMessage="Address line 1 contains invalid characters">
                                 <f:validateRegex pattern="^[^\?\%\+\$\(\)\{\}\;\'\&amp;\&lt;\&gt;]+$" />
                             </h:inputText>
+                            <h:message for="address1" style="color:red" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -56,6 +58,7 @@
                                          validatorMessage="Address line 2 contains invalid characters">
                                 <f:validateRegex pattern="^[^\?\%\+\$\(\)\{\}\;\'\&amp;\&lt;\&gt;]+$" />
                             </h:inputText>
+                            <h:message for="address2" style="color:red" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -70,6 +73,7 @@
                                          validatorMessage="City can be only alphabetic characters and (' )">
                                 <f:validateRegex pattern="^[^\?\%\+\$\(\)\{\}\;\'\&amp;\&lt;\&gt;]+$" />
                             </h:inputText>
+                            <h:message for="city" style="color:red" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -84,6 +88,7 @@
                                          validatorMessage="State can be only alphabetic characters">
                                 <f:validateRegex pattern="^[A-Z]{2}$" />
                             </h:inputText>
+                            <h:message for="state" style="color:red" />
                         </div>
                     </div>
 
@@ -96,9 +101,10 @@
                                          p:placeholder="Phone"
                                          required="true"
                                          requiredMessage="Phone is required"
-                                         validatorMessage="Invalid phone format, should be as xxx-xxx-xxxx">
+                                         validatorMessage="Invalid phone format, should be as xxx-xxx-xxxx in numeric">
                                 <f:validateRegex pattern="^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$" />
                             </h:inputText>
+                            <h:message for="phone" style="color:red" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -110,9 +116,10 @@
                                          p:placeholder="Email"
                                          required="true"
                                          requiredMessage="Email is required"
-                                         validatorMessage="Email can be only alphabetic characters and (' )">
+                                         validatorMessage="Email contains illegal characters">
                                 <f:validateRegex pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" />
                             </h:inputText>
+                            <h:message for="email" style="color:red" />
                         </div>
                     </div>
 
@@ -123,18 +130,21 @@
                                              styleClass="form-control" 
                                              value="#{editProfileBean.message}"
                                              p:placeholder="Message"
-                                             validatorMessage="Message can be only alphabetic characters">
+                                             validatorMessage="Message contains illegal characters">
                                 <f:validateLength minimum="0" maximum="500" />
-                                <f:validateRegex pattern="^[^\?\%\+\$\(\)\{\}\;\'\&amp;\&lt;\&gt;]?$" />
+                                <f:validateRegex pattern="^[^\%\+\$\(\)\{\}\;\'\&amp;\&lt;\&gt;]*$" />
                             </h:inputTextarea>
+                            <h:message for="message" style="color:red" />
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <h:commandButton styleClass="btn btn-primary" action="#{editProfileBean.updateProfile()}"
-                                             value ="Update profile"/>
-                            <h:commandButton styleClass="btn btn-default pull-right" action="editprofile" value="Back to Start"/>
+                                             value ="Update profile" immediate="false"/>
+                            <h:commandButton styleClass="btn btn-default pull-right" 
+                                             action="editprofile" 
+                                             value="Back to Start" immediate="true"/>
                         </div>
                     </div>
                 </div>

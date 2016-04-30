@@ -53,7 +53,7 @@
                                                      value="Add to cart" 
                                                      action="#{cartBackingBean.add(p.productId)}" rendered="#{!cartBackingBean.isItemInCart(p.productId)}">
                                     </h:commandButton>
-                                    <h:outputText styleClass="text-success" value=" Added to you shopping cart" rendered="#{cartBackingBean.isItemInCart(p.productId)}" />
+                                    <h:outputText styleClass="text-success" value=" Added to the shopping cart" rendered="#{cartBackingBean.isItemInCart(p.productId)}" />
                                     <span class="pull-right">In stock: #{p.quantityOnHand}</span>
                                 </div>
                             </div>
