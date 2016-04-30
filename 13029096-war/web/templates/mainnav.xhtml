@@ -31,7 +31,10 @@
                             <li><h:commandLink value="Manage Shop " action="admin-dash" rendered="#{request.isUserInRole('admin')}" immediate="true">
                                     <span class="glyphicon glyphicon glyphicon-tasks"></span></h:commandLink></li>
                             <li><h:commandLink value="My Account - #{request.remoteUser} " action="#{userProfileBean.showUserProfile()}"><span class="glyphicon glyphicon-user"></span></h:commandLink></li>
-                            <li><h:commandLink value="My Cart " action="cart" immediate="true"><span class="glyphicon glyphicon-shopping-cart"></span></h:commandLink></li>
+                            <li><h:commandLink value="My Cart " action="cart" immediate="true">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                    <span class="badge danger">#{cartBackingBean.returnProducts().size()}</span>
+                                </h:commandLink></li>
                             <li><a href="${request.contextPath}/logout" >Logout <span class="glyphicon glyphicon-log-out"></span></a></li>
                         </ul>
                     </div>

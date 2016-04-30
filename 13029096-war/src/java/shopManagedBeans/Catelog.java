@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.*;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedProperty;
 import session.ProductCodeFacade;
 import session.ProductFacade;
@@ -22,7 +22,7 @@ import session.ProductFacade;
  * @author Abdul Halim <13029096@studentmail.ul.ie>
  */
 @Named(value = "catelog")
-@RequestScoped
+@SessionScoped
 public class Catelog implements Serializable{
     
     @EJB
